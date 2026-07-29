@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مجتمع الطلاب والشات المباشر | منصة اتقِ الله التعليمية</title>
+    <meta name="description" content="مجتمع منصة اتقِ الله التعليمية لطلاب البكالوريا المصرية والثانوية العامة والأزهرية. منشورات، مناقشات، غرف شات مباشرة وحماية الخصوصية.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .comm-header {
+            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
+            color: #fff;
+            padding: 30px 20px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+        }
+        .comm-header h1 {
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            color: var(--color-gold-light);
+            font-family: 'Amiri', serif;
+            margin-bottom: 8px;
+        }
+        .comm-header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .comm-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: 10px;
+        }
+        .comm-tab-btn {
+            padding: 12px 24px;
+            border-radius: 12px;
+            background: transparent;
+            border: none;
+            color: var(--color-text-muted);
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .comm-tab-btn.active {
+            background: var(--color-surface);
+            color: var(--color-burgundy);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--color-border);
+        }
+
+        /* Create Post Box */
+        .create-post-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow-sm);
+        }
+        .create-post-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        .user-avatar-sm {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid var(--color-gold);
+            object-fit: cover;
+            background: #fff;
+        }
+        .create-post-textarea {
+            width: 100%;
+            min-height: 90px;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1.5px solid var(--color-border);
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-family: inherit;
+            font-size: 0.95rem;
+            resize: vertical;
+            outline: none;
+            transition: var(--transition);
+            margin-bottom: 12px;
+        }
+        .create-post-textarea:focus {
+            border-color: var(--color-gold);
+            box-shadow: 0 0 0 3px rgba(197,160,89,0.15);
+        }
+        .create-post-footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+        .subject-select-tag {
+            padding: 8px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--color-border);
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-size: 0.88rem;
+            outline: none;
+        }
+        .btn-publish-post {
+            padding: 10px 24px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-publish-post:hover {
+            box-shadow: 0 4px 15px rgba(139,46,46,0.3);
+        }
+
+        /* Post Card */
+        .post-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 18px;
+            padding: 22px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+        .post-author-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .post-author-info {
+            flex-grow: 1;
+        }
+        .post-author-name {
+            font-weight: 700;
+            color: var(--color-text);
+            font-size: 0.98rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .post-author-username {
+            font-size: 0.82rem;
+            color: var(--color-text-muted);
+            direction: ltr;
+            display: inline-block;
+        }
+        .post-time {
+            font-size: 0.78rem;
+            color: var(--color-text-muted);
+        }
+        .post-tag {
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(197,160,89,0.12);
+            color: #8a6a24;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+        .post-content {
+            font-size: 0.98rem;
+            line-height: 1.7;
+            color: var(--color-text);
+            margin-bottom: 16px;
+            white-space: pre-line;
+        }
+        .post-actions-bar {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-top: 1px solid var(--color-border);
+            padding-top: 12px;
+            font-size: 0.9rem;
+        }
+        .post-action-btn {
+            background: transparent;
+            border: none;
+            color: var(--color-text-muted);
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+        .post-action-btn:hover, .post-action-btn.liked {
+            color: var(--color-burgundy);
+        }
+
+        /* Comments List */
+        .comments-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--color-border);
+        }
+        .comment-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            background: var(--color-bg);
+            padding: 10px 14px;
+            border-radius: 12px;
+        }
+        .comment-author {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--color-burgundy);
+        }
+        .comment-text {
+            font-size: 0.88rem;
+            color: var(--color-text);
+        }
+        .add-comment-wrapper {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .add-comment-input {
+            flex-grow: 1;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+            background: var(--color-bg);
+            font-size: 0.88rem;
+            outline: none;
+        }
+
+        /* Chat Room */
+        .chat-room-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+        .chat-privacy-banner {
+            background: rgba(46,139,87,0.1);
+            color: #2E8B57;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .chat-messages-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 15px;
+            background: var(--color-bg);
+            border-radius: 14px;
+            border: 1px solid var(--color-border);
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .chat-msg-bubble {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 14px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            align-self: flex-start;
+        }
+        .chat-msg-bubble.own {
+            align-self: flex-end;
+            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
+            color: #fff;
+            border: none;
+        }
+        .chat-msg-author {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--color-gold);
+            margin-bottom: 4px;
+        }
+        .chat-msg-bubble.own .chat-msg-author {
+            color: var(--color-gold-light);
+        }
+        .chat-input-bar {
+            display: flex;
+            gap: 10px;
+        }
+        .chat-input {
+            flex-grow: 1;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1.5px solid var(--color-border);
+            background: var(--color-bg);
+            font-size: 0.95rem;
+            color: var(--color-text);
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container" style="margin-top: 30px;">
+        <div class="comm-header">
+            <h1><i class="fa-solid fa-users-bubble"></i> مجتمع منصة اتقِ الله الرقمي</h1>
+            <p>شارك ملخصاتك، اطرح أسئلتك في البكالوريا والثانوية، وتفاعل مع زملائك بأمان وخصوصية مضاعفة.</p>
+        </div>
+
+        <div class="comm-tabs">
+            <button class="comm-tab-btn active" id="tabPostsBtn" onclick="switchCommTab('posts')">
+                <i class="fa-solid fa-newspaper"></i> منشورات ومناقشات الطلاب
+            </button>
+            <button class="comm-tab-btn" id="tabChatBtn" onclick="switchCommTab('chat')">
+                <i class="fa-solid fa-comments"></i> الدردشة الجماعية المباشرة
+            </button>
+        </div>
+
+        <!-- Section 1: Posts Feed -->
+        <div id="postsSection">
+            <div class="create-post-card">
+                <div class="create-post-header">
+                    <img src="1.webp" id="currentUserAvatarImg" class="user-avatar-sm" alt="Avatar">
+                    <div>
+                        <strong id="currentUsernameText" style="color:var(--color-burgundy);">زائر منصة اتقِ الله</strong>
+                        <div style="font-size:0.75rem; color:var(--color-text-muted);">انشر سؤالك أو ملخصك (+10 نقاط)</div>
+                    </div>
+                </div>
+                <textarea id="postContentInput" class="create-post-textarea" placeholder="ما الذي يراودك بخصوص امتحانات البكالوريا أو المذاكرة؟ اكتب منشورك هنا..."></textarea>
+                <div class="create-post-footer">
+                    <select id="postSubjectTagSelect" class="subject-select-tag">
+                        <option value="عام">📌 منشور عام / نصائح</option>
+                        <option value="البكالوريا المصرية">🎓 نظام البكالوريا</option>
+                        <option value="العلوم والتكنولوجيا">🔬 مسار العلوم والتكنولوجيا</option>
+                        <option value="الأعمال والإدارة">💼 مسار الأعمال والتجارة</option>
+                        <option value="الفنون والآداب">🎨 مسار الفنون والآداب</option>
+                        <option value="الثانوية العامة">📚 الثانوية العامة</option>
+                        <option value="الثانوية الأزهرية">🕌 الثانوية الأزهرية</option>
+                    </select>
+                    <button class="btn-publish-post" onclick="submitNewPost()">
+                        <i class="fa-solid fa-paper-plane"></i> نشر المنشور (+10 نقاط)
+                    </button>
+                </div>
+            </div>
+
+            <div id="postsFeedContainer">
+                <!-- Posts dynamic stream -->
+            </div>
+        </div>
+
+        <!-- Section 2: Anonymous Live Group Chat -->
+        <div id="chatSection" style="display: none;">
+            <div class="chat-room-card">
+                <div class="chat-privacy-banner">
+                    <i class="fa-solid fa-user-shield"></i>
+                    غرفة الدردشة مشفرة ومحمية بالكامل: اسمك الحقيقي ورقم هاتفك وبريدك لا يظهران لأي طالب إطلاقاً! يظهر فقط اسم المستخدم (اليوزر) وآفاتارك.
+                </div>
+                <div class="chat-messages-container" id="chatMessagesBox">
+                    <!-- Live chat messages -->
+                </div>
+                <div class="chat-input-bar">
+                    <input type="text" id="chatMessageInput" class="chat-input" placeholder="اكتب رسالتك لجميع الطلاب هنا..." onkeypress="if(event.key==='Enter') sendChatMessage()">
+                    <button class="btn-publish-post" onclick="sendChatMessage()">
+                        <i class="fa-solid fa-paper-plane"></i> إرسال
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="firebase-service.js"></script>
+    <script src="components.js"></script>
+
+    <script>
+        let currentStudentData = null;
+
+        async function initCommunity() {
+            const email = localStorage.getItem('authenticatedUserEmail');
+            if (email && window.getStudentProfile) {
+                currentStudentData = await window.getStudentProfile(email);
+                if (currentStudentData) {
+                    document.getElementById('currentUsernameText').innerText = currentStudentData.username || currentStudentData.fullName;
+                    if (currentStudentData.avatarId) {
+                        document.getElementById('currentUserAvatarImg').src = `${currentStudentData.avatarId}.webp`;
+                    }
+                }
+            }
+            loadPostsFeed();
+            loadChatMessages();
+        }
+
+        function switchCommTab(tab) {
+            if (tab === 'posts') {
+                document.getElementById('postsSection').style.display = 'block';
+                document.getElementById('chatSection').style.display = 'none';
+                document.getElementById('tabPostsBtn').classList.add('active');
+                document.getElementById('tabChatBtn').classList.remove('active');
+            } else {
+                document.getElementById('postsSection').style.display = 'none';
+                document.getElementById('chatSection').style.display = 'block';
+                document.getElementById('tabChatBtn').classList.add('active');
+                document.getElementById('tabPostsBtn').classList.remove('active');
+            }
+        }
+
+        async function submitNewPost() {
+            if (!window.requireAuth()) return;
+            const content = document.getElementById('postContentInput').value.trim();
+            const tag = document.getElementById('postSubjectTagSelect').value;
+
+            if (!content) return alert('يرجى كتابة محتوى المنشور أولاً!');
+
+            const email = localStorage.getItem('authenticatedUserEmail');
+            const username = currentStudentData?.username || '@طالب_اتق_الله';
+            const avatarId = currentStudentData?.avatarId || 1;
+
+            try {
+                if (window.createNewPost) {
+                    await window.createNewPost(email, username, avatarId, content, tag);
+                }
+                document.getElementById('postContentInput').value = '';
+                alert('🎉 تم نشر منشورك بنجاح وحصلت على +10 نقاط تحفيزية!');
+                loadPostsFeed();
+            } catch(e) {
+                alert('حدث خطأ أثناء النشر: ' + e.message);
+            }
+        }
+
+        async function loadPostsFeed() {
+            const container = document.getElementById('postsFeedContainer');
+            container.innerHTML = '<div style="text-align:center; padding:30px;"><i class="fa-solid fa-spinner fa-spin fa-2x"></i></div>';
+            
+            try {
+                const posts = window.fetchCommunityPosts ? await window.fetchCommunityPosts() : [];
+                container.innerHTML = '';
+
+                if (posts.length === 0) {
+                    container.innerHTML = '<div style="text-align:center; padding:40px; background:var(--color-surface); border-radius:18px; color:var(--color-text-muted);">لا توجد منشورات حالياً، كن أول من ينشر شارك أفكارك!</div>';
+                    return;
+                }
+
+                posts.forEach(post => {
+                    const postCard = document.createElement('div');
+                    postCard.className = 'post-card';
+                    const isLiked = post.likes && post.likes.includes(localStorage.getItem('authenticatedUserEmail'));
+                    const likesCount = post.likes ? post.likes.length : 0;
+                    const commentsCount = post.comments ? post.comments.length : 0;
+
+                    let commentsHtml = '';
+                    if (post.comments && post.comments.length > 0) {
+                        post.comments.forEach(c => {
+                            commentsHtml += `
+                                <div class="comment-item">
+                                    <span class="comment-author">${c.username}:</span>
+                                    <span class="comment-text">${c.text}</span>
+                                </div>
+                            `;
+                        });
+                    }
+
+                    postCard.innerHTML = `
+                        <div class="post-author-row">
+                            <img src="${post.avatarId || 1}.webp" class="user-avatar-sm" alt="Avatar">
+                            <div class="post-author-info">
+                                <div class="post-author-name">
+                                    <span>${post.username || '@طالب_اتق_الله'}</span>
+                                    <span class="post-tag">${post.tag || 'عام'}</span>
+                                </div>
+                                <div class="post-time">${post.timeAgo || 'مؤخراً'}</div>
+                            </div>
+                        </div>
+                        <div class="post-content">${post.content}</div>
+                        <div class="post-actions-bar">
+                            <button class="post-action-btn ${isLiked ? 'liked' : ''}" onclick="toggleLikePost('${post.id}')">
+                                <i class="fa-solid fa-heart"></i> إعجاب (${likesCount})
+                            </button>
+                            <button class="post-action-btn" onclick="toggleCommentsView('${post.id}')">
+                                <i class="fa-solid fa-comment"></i> التعليقات (${commentsCount})
+                            </button>
+                        </div>
+                        <div class="comments-section" id="commentsWrapper_${post.id}" style="display:none;">
+                            ${commentsHtml}
+                            <div class="add-comment-wrapper">
+                                <input type="text" id="commentInput_${post.id}" class="add-comment-input" placeholder="اكتب تعليقك محترماً (+5 نقاط)...">
+                                <button class="btn-publish-post" style="padding:6px 14px; font-size:0.85rem;" onclick="submitPostComment('${post.id}')">تعليق</button>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(postCard);
+                });
+            } catch(e) {
+                container.innerHTML = '<div style="text-align:center; padding:30px; color:red;">تعذر تحميل المنشورات حالياً.</div>';
+            }
+        }
+
+        async function toggleLikePost(postId) {
+            if (!window.requireAuth()) return;
+            const email = localStorage.getItem('authenticatedUserEmail');
+            if (window.toggleLikeOnPost) {
+                await window.toggleLikeOnPost(postId, email);
+                loadPostsFeed();
+            }
+        }
+
+        function toggleCommentsView(postId) {
+            const el = document.getElementById(`commentsWrapper_${postId}`);
+            if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+        }
+
+        async function submitPostComment(postId) {
+            if (!window.requireAuth()) return;
+            const input = document.getElementById(`commentInput_${postId}`);
+            const text = input ? input.value.trim() : '';
+            if (!text) return;
+
+            const email = localStorage.getItem('authenticatedUserEmail');
+            const username = currentStudentData?.username || '@طالب_اتق_الله';
+
+            if (window.addCommentToPost) {
+                await window.addCommentToPost(postId, email, username, text);
+                input.value = '';
+                loadPostsFeed();
+            }
+        }
+
+        async function loadChatMessages() {
+            const box = document.getElementById('chatMessagesBox');
+            if (window.listenToLiveGroupChat) {
+                window.listenToLiveGroupChat((msgs) => {
+                    box.innerHTML = '';
+                    const myEmail = localStorage.getItem('authenticatedUserEmail');
+                    msgs.forEach(m => {
+                        const isOwn = m.senderEmail === myEmail;
+                        const bubble = document.createElement('div');
+                        bubble.className = `chat-msg-bubble ${isOwn ? 'own' : ''}`;
+                        bubble.innerHTML = `
+                            <div class="chat-msg-author">${m.senderUsername || '@طالب'}</div>
+                            <div>${m.text}</div>
+                        `;
+                        box.appendChild(bubble);
+                    });
+                    box.scrollTop = box.scrollHeight;
+                });
+            }
+        }
+
+        async function sendChatMessage() {
+            if (!window.requireAuth()) return;
+            const input = document.getElementById('chatMessageInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const email = localStorage.getItem('authenticatedUserEmail');
+            const username = currentStudentData?.username || '@طالب_اتق_الله';
+            const avatarId = currentStudentData?.avatarId || 1;
+
+            if (window.sendLiveChatMessage) {
+                await window.sendLiveChatMessage(email, username, avatarId, text);
+                input.value = '';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initCommunity);
+    </script>
+</body>
+</html>

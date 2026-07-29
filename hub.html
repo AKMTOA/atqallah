@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل البكالوريا والمسارات الجامعية | منصة اتقِ الله التعليمية</title>
+    <meta name="description" content="البوصلة الشاملة لدليل الكليات ومسارات البكالوريا المصرية والثانوية العامة والأزهرية 2026.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        .hub-hero {
+            background: linear-gradient(135deg, rgba(139,46,46,0.95), rgba(74,21,21,0.98)), url('1.png') center/cover;
+            color: #fff;
+            padding: 50px 20px;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+        }
+        .hub-hero h1 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: var(--color-gold-light);
+            margin-bottom: 12px;
+            font-family: 'Amiri', serif;
+        }
+        .hub-hero p {
+            max-width: 750px;
+            margin: 0 auto 25px;
+            opacity: 0.92;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .filter-bar-container {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-sm);
+        }
+        .search-input-wrapper {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .search-input-wrapper i {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-gold);
+            font-size: 1.2rem;
+        }
+        .search-input-wrapper input {
+            width: 100%;
+            padding: 14px 48px 14px 18px;
+            border-radius: 12px;
+            border: 1.5px solid var(--color-border);
+            background: var(--color-bg);
+            font-size: 1rem;
+            color: var(--color-text);
+            outline: none;
+            transition: var(--transition);
+        }
+        .search-input-wrapper input:focus {
+            border-color: var(--color-gold);
+            box-shadow: 0 0 0 4px rgba(197,160,89,0.15);
+        }
+
+        .system-tags-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .sys-tag-btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: 1.5px solid var(--color-border);
+            background: var(--color-bg);
+            color: var(--color-text);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .sys-tag-btn.active, .sys-tag-btn:hover {
+            background: var(--color-burgundy);
+            color: #fff;
+            border-color: var(--color-burgundy);
+        }
+
+        .faculties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .faculty-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 18px;
+            padding: 24px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .faculty-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-gold-light);
+        }
+        .faculty-badge {
+            align-self: flex-start;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .badge-bac { background: rgba(139,46,46,0.1); color: var(--color-burgundy); }
+        .badge-thanaweya { background: rgba(197,160,89,0.15); color: #8a6a24; }
+        .badge-azhar { background: rgba(46,139,87,0.1); color: #2E8B57; }
+
+        .faculty-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .faculty-title i {
+            color: var(--color-gold);
+        }
+        .faculty-desc {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+            margin-bottom: 16px;
+            flex-grow: 1;
+        }
+        .faculty-reqs {
+            background: var(--color-bg);
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 0.82rem;
+            margin-bottom: 16px;
+        }
+        .faculty-reqs strong {
+            color: var(--color-burgundy);
+            display: block;
+            margin-bottom: 6px;
+        }
+        .btn-set-goal {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-set-goal:hover {
+            box-shadow: 0 4px 15px rgba(139,46,46,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container" style="margin-top: 30px;">
+        <div class="hub-hero">
+            <h1><i class="fa-solid fa-compass"></i> البوصلة الذكية للكليات والمسارات 2026</h1>
+            <p>استكشف جميع الكليات والمعاهد العليا وتخصصات المستقبل المتوافقة مع نظام البكالوريا المصرية المستحدث، الثانوية العامة، والثانوية الأزهرية.</p>
+        </div>
+
+        <div class="filter-bar-container">
+            <div class="search-input-wrapper">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="facultySearchInput" placeholder="ابحث باسم الكلية أو المجال (مثال: حاسبات، طب، اقتصاد، إعلام، شريعة)...">
+            </div>
+            <div class="system-tags-grid">
+                <button class="sys-tag-btn active" onclick="filterSystem('all', this)">كل الأنظمة</button>
+                <button class="sys-tag-btn" onclick="filterSystem('bac', this)">البكالوريا المصرية</button>
+                <button class="sys-tag-btn" onclick="filterSystem('thanaweya', this)">الثانوية العامة</button>
+                <button class="sys-tag-btn" onclick="filterSystem('azhar', this)">الثانوية الأزهرية</button>
+            </div>
+        </div>
+
+        <div class="faculties-grid" id="facultiesGrid">
+            <!-- Dynamic faculty cards loaded via JS -->
+        </div>
+    </main>
+
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="firebase-service.js"></script>
+    <script src="components.js"></script>
+
+    <script>
+        const facultiesData = [
+            {
+                id: 'med',
+                title: 'كلية الطب البشري والعلوم الطبية',
+                system: 'bac',
+                sysName: 'البكالوريا - مسار العلوم والتكنولوجيا',
+                badgeClass: 'badge-bac',
+                desc: 'تجهيز الكوادر الطبية بالمهارات الحديثة والتشخيص الرقمي والبحث الجيني.',
+                reqs: 'المواد المطلوبة: العلوم المتكاملة، الكيمياء المتقدمة، الأحياء، واللغة الإنجليزية.',
+                careers: 'طبيب بشري، جراح، باحث جيني، متخصص صحة رقمية.'
+            },
+            {
+                id: 'eng_cs',
+                title: 'كلية الهندسة والحاسبات والذكاء الاصطناعي',
+                system: 'bac',
+                sysName: 'البكالوريا - مسار العلوم والتكنولوجيا',
+                badgeClass: 'badge-bac',
+                desc: 'تخصصات البرمجة، الأمن السيبراني، الذكاء الاصطناعي، الهندسة الكهربائية والميكانيكية.',
+                reqs: 'المواد المطلوبة: الرياضيات المتقدمة، الفيزياء، البرمجة والحاسب.',
+                careers: 'مهندس برمجيات، عالم بيانات، مهندس ذكاء اصطناعي، مهندس مدني/كهرباء.'
+            },
+            {
+                id: 'business',
+                title: 'كلية كلية الأعمال والاقتصاد الرقمي',
+                system: 'bac',
+                sysName: 'البكالوريا - مسار الأعمال والإدارة',
+                badgeClass: 'badge-bac',
+                desc: 'إدارة الشركات الرقمية، المحاسبة السحابية، التسويق الإلكتروني والاقتصاد الدولي.',
+                reqs: 'المواد المطلوبة: مبادئ الاقتصاد، المحاسبة، الإحصاء، اللغة الثانية.',
+                careers: 'محلل مالي، مدير تسويق رقمي، رائد أعمال، محاسب قانوني.'
+            },
+            {
+                id: 'arts_media',
+                title: 'كلية الإعلام والفنون الجميلة والتصميم',
+                system: 'bac',
+                sysName: 'البكالوريا - مسار الفنون والآداب',
+                badgeClass: 'badge-bac',
+                desc: 'صناعة المحتوى الرقمي، التصميم الجرافيكي، الإعلام الحديث، والترجمة الفورية.',
+                reqs: 'المواد المطلوبة: اللغة العربية، علوم الإعلام، تاريخ وحضارة، فنون.',
+                careers: 'صانع محتوى، مصمم جرافيك، صحفي رقمي، مترجم معتمد.'
+            },
+            {
+                id: 'thanaweya_med',
+                title: 'كلية الطب البشري (عامة)',
+                system: 'thanaweya',
+                sysName: 'الثانوية العامة - شعبة علمي علوم',
+                badgeClass: 'badge-thanaweya',
+                desc: 'الكلية الرائدة لطلاب علمي علوم، دراسة 5 سنوات + سنة امتياز تدريبية.',
+                reqs: 'المواد المطلوبة: الأحياء، الكيمياء، الفيزياء، واللغات.',
+                careers: 'طبيب ممارس عام، أخصائي، باحث طبي.'
+            },
+            {
+                id: 'thanaweya_eng',
+                title: 'كلية الهندسة (عامة)',
+                system: 'thanaweya',
+                sysName: 'الثانوية العامة - شعبة علمي رياضة',
+                badgeClass: 'badge-thanaweya',
+                desc: 'دراسة 4 إلى 5 سنوات وتضم تخصصات المدني، المعماري، الميكانيكا، والاتصالات.',
+                reqs: 'المواد المطلوبة: الرياضيات (تفاضل وتكامل وميكانيكا)، الفيزياء، الكيمياء.',
+                careers: 'مهندس تنفيذ، مهندس تصميم، استشاري مشاريع.'
+            },
+            {
+                id: 'azhar_sharia',
+                title: 'كلية الشريعة والقانون والدراسات الإسلامية',
+                system: 'azhar',
+                sysName: 'الثانوية الأزهرية - شريعة وقانون',
+                badgeClass: 'badge-azhar',
+                desc: 'تخريج المستشارين والمحامين والباحثين الشرعيين الملمين بالفقه والقانون الجنائي والدولي.',
+                reqs: 'المواد المطلوبة: الفقه المقارن، أصول الفقه، القوانين العامة، البلاغة.',
+                careers: 'محامي معتمد، مستشار قانوني، باحث شرعي، قاضي.'
+            },
+            {
+                id: 'azhar_usul',
+                title: 'كلية أصول الدين والدعوة الإسلامية',
+                system: 'azhar',
+                sysName: 'الثانوية الأزهرية - كليات أزهرية',
+                badgeClass: 'badge-azhar',
+                desc: 'تخصصات التفسير، الحديث الشريف، العقيدة والفلسفة الإسلامية.',
+                reqs: 'المواد المطلوبة: القرآن الكريم، التفسير، الحديث، التوحيد والمنطق.',
+                careers: 'إمام وخطيب، أستاذ جامعي، باحث في الفكر الإسلامي.'
+            }
+        ];
+
+        let activeSysFilter = 'all';
+
+        function renderFaculties() {
+            const grid = document.getElementById('facultiesGrid');
+            const searchVal = document.getElementById('facultySearchInput').value.trim().toLowerCase();
+            grid.innerHTML = '';
+
+            const filtered = facultiesData.filter(item => {
+                const matchesSys = activeSysFilter === 'all' || item.system === activeSysFilter;
+                const matchesSearch = item.title.toLowerCase().includes(searchVal) || 
+                                      item.desc.toLowerCase().includes(searchVal) ||
+                                      item.reqs.toLowerCase().includes(searchVal);
+                return matchesSys && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:40px; color:var(--color-text-muted);">لا توجد كليات مطابقة للبحث حالياً.</div>';
+                return;
+            }
+
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'faculty-card';
+                card.innerHTML = `
+                    <span class="faculty-badge ${item.badgeClass}">${item.sysName}</span>
+                    <h3 class="faculty-title"><i class="fa-solid fa-graduation-cap"></i> ${item.title}</h3>
+                    <p class="faculty-desc">${item.desc}</p>
+                    <div class="faculty-reqs">
+                        <strong><i class="fa-solid fa-list-check"></i> متطلبات القبول والمواد:</strong>
+                        ${item.reqs}
+                    </div>
+                    <div class="faculty-reqs" style="background: rgba(197,160,89,0.08);">
+                        <strong style="color:var(--color-gold);"><i class="fa-solid fa-briefcase"></i> مجالات العمل المستقبلية:</strong>
+                        ${item.careers}
+                    </div>
+                    <button class="btn-set-goal" onclick="setTargetFaculty('${item.title}')">
+                        <i class="fa-solid fa-bullseye"></i> تحديد كهدف مستقبلي (+10 نقاط)
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterSystem(sys, btn) {
+            activeSysFilter = sys;
+            document.querySelectorAll('.sys-tag-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderFaculties();
+        }
+
+        document.getElementById('facultySearchInput').addEventListener('input', renderFaculties);
+
+        async function setTargetFaculty(facultyTitle) {
+            const email = localStorage.getItem('authenticatedUserEmail');
+            if (!email) {
+                alert('يرجى تسجيل الدخول أولاً لتحديد كليتك المستهدفة كهدف وحصد النقاط!');
+                window.location.href = 'auth.html';
+                return;
+            }
+            try {
+                if (window.awardPoints) {
+                    await window.awardPoints(email, 10, 'تحديد هدف الكلية المستهدفة');
+                }
+                alert(`🎯 تم تحديد "${facultyTitle}" ككليتك المستهدفة بنجاح ومُنحت +10 نقاط تحفيزية!`);
+            } catch(e) {
+                alert('تم تحديد الهدف بنجاح!');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', renderFaculties);
+    </script>
+</body>
+</html>

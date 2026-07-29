@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة اتقِ الله | بوابة الدخول السحابية المعززة</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body { padding: 80px 20px 40px !important; display: block; margin: 0; }
+        /* ---------------------------------------------------------
+           1. المظهر العام والسمة الفاخرة (Premium Luxury Theme)
+        --------------------------------------------------------- */
+        :root {
+            --color-bg: #F5F1E6; /* خلفية عاجية مريحة جداً للعين */
+            --color-card-bg: rgba(255, 255, 255, 0.85);
+            --color-burgundy: #8B2E2E; /* البرجندي الملكي */
+            --color-burgundy-dark: #5A1C1C;
+            --color-gold: #C5A059; /* الذهبي النقي للاختيارات */
+            --color-text-main: #2D2522; 
+            --color-text-muted: #7A706C;
+            --glass-border: rgba(139, 46, 46, 0.15);
+            --radius-main: 30px;
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-premium: 0 30px 70px rgba(45, 37, 34, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none;
+            font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: var(--color-bg) linear-gradient(135deg, #F5F1E6 0%, #EAE2D1 100%);
+            min-height: 100vh;
+            display: block;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* الخلفية الزخرفية الناعمة للتوافق مع الفخامة */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 100%; height: 100%;
+            top: 0; left: 0;
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ---------------------------------------------------------
+           2. الهيكل الرئيسي للبطاقة السحابية
+        --------------------------------------------------------- */
+        .premium-auth-box {
+            background: var(--color-card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-main);
+            width: 100%;
+            max-width: 580px;
+            margin: 0 auto;
+            padding: 45px 40px;
+            box-shadow: var(--shadow-premium);
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        /* الأنيميشن الخاص بالدخول والتنقل بين الواجهات */
+        @keyframes customFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animated-view {
+            animation: customFadeIn 0.5s ease-out forwards;
+        }
+
+        /* اللوجو والعنوان الأعلى */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .brand-header img {
+            width: 90px;
+            height: auto;
+            filter: drop-shadow(0 10px 15px rgba(139, 46, 46, 0.15));
+            transition: var(--transition-smooth);
+        }
+        .brand-header img:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+        .brand-header h2 {
+            color: var(--color-burgundy);
+            font-weight: 900;
+            font-size: 1.6rem;
+            margin-top: 12px;
+            letter-spacing: -0.5px;
+        }
+        .brand-header p {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        /* ---------------------------------------------------------
+           3. المحولات العلوية (Tabs)
+        --------------------------------------------------------- */
+        .auth-nav-tabs {
+            display: flex;
+            background: rgba(45, 37, 34, 0.05);
+            border-radius: 20px;
+            padding: 6px;
+            margin-bottom: 35px;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+        .nav-tab-btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            background: transparent;
+            color: var(--color-text-main);
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 15px;
+            transition: var(--transition-smooth);
+        }
+        .nav-tab-btn.active {
+            background: var(--color-burgundy);
+            color: #FFFFFF;
+            box-shadow: 0 10px 20px rgba(139, 46, 46, 0.2);
+        }
+
+        /* ---------------------------------------------------------
+           4. حقول الكتابة الفاخرة (Input Groups)
+        --------------------------------------------------------- */
+        .luxury-input-group {
+            position: relative;
+            margin-bottom: 22px;
+        }
+        .luxury-input-group i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-burgundy);
+            font-size: 1.15rem;
+            transition: var(--transition-smooth);
+            pointer-events: none;
+        }
+        .luxury-input-group input {
+            width: 100%;
+            padding: 16px 55px 16px 25px;
+            border-radius: 16px;
+            border: 2px solid rgba(0, 0, 0, 0.06);
+            background: #FFFFFF;
+            color: var(--color-text-main);
+            font-size: 1rem;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.01);
+        }
+        .luxury-input-group input:focus {
+            border-color: var(--color-burgundy);
+            box-shadow: 0 10px 25px rgba(139, 46, 46, 0.06);
+            transform: translateY(-1px);
+        }
+        .luxury-input-group input:focus + i {
+            color: var(--color-gold);
+        }
+
+        /* ---------------------------------------------------------
+           5. شبكة بطاقات الاختيار المستطيلة المستحدثة (Choice Cards)
+        --------------------------------------------------------- */
+        .section-title {
+            font-size: 1rem;
+            color: var(--color-burgundy);
+            font-weight: 800;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .choice-rect-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .choice-rect-card {
+            background: #FFFFFF;
+            border: 2px solid rgba(0, 0, 0, 0.06);
+            padding: 18px 15px;
+            border-radius: 18px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: 700;
+            color: var(--color-text-main);
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+        }
+        .choice-rect-card:hover {
+            border-color: var(--color-gold);
+            transform: translateY(-2px);
+            background: #FFFDF9;
+        }
+        .choice-rect-card.selected {
+            background: var(--color-burgundy);
+            color: #FFFFFF;
+            border-color: var(--color-burgundy);
+            box-shadow: 0 12px 24px rgba(139, 46, 46, 0.18);
+            transform: translateY(-3px);
+        }
+
+        /* ---------------------------------------------------------
+           6. أشرطة وشبكات الأيقونات والآفاتار المتقدمة
+        --------------------------------------------------------- */
+        .avatar-scroll-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 12px 5px;
+            margin-bottom: 25px;
+            scrollbar-width: none; /* إخفاء شريط التمرير الافتراضي */
+        }
+        .avatar-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+        .avatar-capsule {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #FFFFFF;
+            border: 3px solid transparent;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            flex-shrink: 0;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.04);
+            object-fit: cover;
+        }
+        .avatar-capsule:hover {
+            transform: scale(1.08);
+            border-color: var(--color-gold);
+        }
+        .avatar-capsule.selected {
+            border-color: var(--color-burgundy);
+            transform: scale(1.12);
+            box-shadow: 0 10px 20px rgba(139, 46, 46, 0.2);
+        }
+
+        /* ---------------------------------------------------------
+           7. شروط وأحكام العضوية الفاخرة
+        --------------------------------------------------------- */
+        .premium-terms-container {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 16px;
+            padding: 15px 20px;
+            height: 100px;
+            overflow-y: auto;
+            font-size: 0.82rem;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .premium-terms-container::-webkit-scrollbar {
+            width: 4px;
+        }
+        .premium-terms-container::-webkit-scrollbar-thumb {
+            background: var(--color-burgundy);
+            border-radius: 10px;
+        }
+        .checkbox-luxury-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--color-text-main);
+            cursor: pointer;
+            margin-bottom: 25px;
+        }
+        .checkbox-luxury-label input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--color-burgundy);
+            cursor: pointer;
+        }
+
+        /* ---------------------------------------------------------
+           8. الأزرار وأنظمة التنقل السفلي
+        --------------------------------------------------------- */
+        .btn-premium-action {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--color-burgundy) 0%, var(--color-burgundy-dark) 100%);
+            color: #FFFFFF;
+            border: none;
+            border-radius: 18px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 12px 30px rgba(139, 46, 46, 0.25);
+            transition: var(--transition-smooth);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-premium-action:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(139, 46, 46, 0.35);
+        }
+        .btn-premium-action:active {
+            transform: translateY(-1px);
+        }
+        .btn-premium-action .spinner {
+            display: none;
+            width: 20px; height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .navigation-footer-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .btn-back-premium {
+            flex: 1;
+            padding: 15px;
+            background: rgba(45, 37, 34, 0.06);
+            border: none;
+            border-radius: 16px;
+            color: var(--color-text-main);
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .btn-back-premium:hover {
+            background: rgba(45, 37, 34, 0.1);
+        }
+
+        .support-link-wrapper {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .support-link-wrapper a {
+            color: var(--color-burgundy);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+        }
+        .support-link-wrapper a:hover {
+            color: var(--color-gold);
+        }
+
+        /* استعلامات الوسائط لضمان التوافق مع الشاشات والموبايل بنسبة 100% */
+        @media (max-width: 600px) {
+            .premium-auth-box {
+                padding: 28px 20px;
+                border-radius: 20px;
+            }
+            .brand-header img { width: 70px; }
+            .brand-header h2 { font-size: 1.3rem; }
+            .nav-tab-btn { padding: 12px; font-size: 0.9rem; }
+            .choice-rect-grid { grid-template-columns: 1fr; gap: 10px; }
+            .luxury-input-group input { padding: 14px 50px 14px 20px; font-size: 0.95rem; }
+            .navigation-footer-buttons { flex-direction: column; gap: 10px; }
+            .btn-premium-action, .btn-back-premium { width: 100%; }
+            .premium-terms-container { font-size: 0.8rem; padding: 16px; }
+        }
+
+        @media (max-width: 400px) {
+            .premium-auth-box { padding: 22px 16px; border-radius: 16px; }
+            .brand-header img { width: 60px; }
+            .brand-header h2 { font-size: 1.15rem; }
+            .auth-nav-tabs { padding: 4px; }
+            .nav-tab-btn { padding: 10px; font-size: 0.85rem; border-radius: 12px; }
+            .luxury-input-group input { padding: 12px 45px 12px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="premium-auth-box animated-view">
+    
+    <div class="brand-header">
+        <img src="at.png" alt="منصة اتقِ الله" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2232/2232688.png'">
+        <h2>منصة اتقِ الله</h2>
+        <p>بوابة الدخول والالتحاق السحابي الموحد للطلاب</p>
+    </div>
+
+    <div class="auth-nav-tabs">
+        <button class="nav-tab-btn active" id="tabLogin" onclick="switchAuthMode('login')">تسجيل الدخول</button>
+        <button class="nav-tab-btn" id="tabRegister" onclick="switchAuthMode('register')">تأسيس عضوية جديدة</button>
+    </div>
+
+    <div id="loginFormGroup">
+        <div class="luxury-input-group">
+            <i class="fa-solid fa-user-shield"></i>
+            <input type="text" id="loginIdentifier" placeholder="البريد الإلكتروني أو رقم الموبايل">
+        </div>
+        <div class="luxury-input-group">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="loginPassword" placeholder="كلمة المرور السريّة">
+        </div>
+        <button class="btn-premium-action" onclick="executeCloudLogin()">
+            <span>دخول آمن للمنصة</span>
+            <div class="spinner" id="loginSpinner"></div>
+        </button>
+        <div class="support-link-wrapper">
+            <a href="support.html"><i class="fa-solid fa-circle-question"></i> نسيت كلمة المرور؟ تواصل مع الدعم الفني</a>
+        </div>
+    </div>
+
+    <div id="registerFormGroup" style="display: none;">
+        <form id="secureRegisterForm" onsubmit="event.preventDefault();">
+            
+            <div class="register-step-segment" id="regStep1">
+                <div class="section-title"><i class="fa-solid fa-id-card"></i> الخطوة الأولى: البيانات الشخصية والخصوصية</div>
+                <div class="luxury-input-group">
+                    <i class="fa-solid fa-signature"></i>
+                    <input type="text" id="regFullName" placeholder="الاسم الكامل">
+                </div>
+                <div class="luxury-input-group">
+                    <i class="fa-solid fa-at"></i>
+                    <input type="text" id="regUsername" placeholder="اسم المستخدم (يوزر فريد لحماية خصوصيتك في الشات والمجتمع)">
+                </div>
+                <div class="luxury-input-group">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="regEmail" placeholder="البريد الإلكتروني">
+                </div>
+                <div class="luxury-input-group">
+                    <i class="fa-solid fa-phone-flip"></i>
+                    <input type="tel" id="regPhone" placeholder="رقم الموبايل الشخصي">
+                </div>
+                <div class="luxury-input-group">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <input type="text" id="regGov" placeholder="المحافظة (مثال: القاهرة، الإسكندرية، الجيزة)">
+                </div>
+                <div class="luxury-input-group">
+                    <i class="fa-solid fa-key"></i>
+                    <input type="password" id="regPassword" placeholder="إنشاء كلمة سر قوية">
+                </div>
+                <div class="luxury-input-group">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <input type="password" id="regSecretPin" maxlength="4" placeholder="كود أمان سري للحساب (4 أرقام)">
+                </div>
+                <button type="button" class="btn-premium-action" onclick="validateAndMoveToStep(2)">المتابعة للمسار الدراسي</button>
+            </div>
+
+            <div class="register-step-segment" id="regStep2" style="display: none;">
+                <div class="section-title"><i class="fa-solid fa-graduation-cap"></i> الخطوة الثانية: تحديد النظام التعليمي والمسار</div>
+                
+                <p style="font-size:0.85rem; color:var(--color-text-muted); margin-bottom:10px;">اختر النظام التعليمي الحالي الخاص بك:</p>
+                <div class="choice-rect-grid" style="grid-template-columns: repeat(3, 1fr);">
+                    <div class="choice-rect-card" id="system_bac" onclick="selectEducationSystem('bac')">البكالوريا المصرية</div>
+                    <div class="choice-rect-card" id="system_thanaweya" onclick="selectEducationSystem('thanaweya')">الثانوية العامة</div>
+                    <div class="choice-rect-card" id="system_azhar" onclick="selectEducationSystem('azhar')">الثانوية الأزهرية</div>
+                </div>
+
+                <div id="bacPathsWrapper" style="display: none;">
+                    <p style="font-size:0.85rem; color:var(--color-text-muted); margin-bottom:10px;">مسارات البكالوريا المستحدثة 2026:</p>
+                    <div class="choice-rect-grid">
+                        <div class="choice-rect-card path-option-card" onclick="selectSubPath('العلوم والتكنولوجيا')">العلوم والتكنولوجيا (طب/هندسة)</div>
+                        <div class="choice-rect-card path-option-card" onclick="selectSubPath('الأعمال والإدارة')">الأعمال والإدارة الاقتصادية</div>
+                        <div class="choice-rect-card path-option-card" onclick="selectSubPath('الفنون والآداب')">الفنون والآداب والإعلام</div>
+                        <div class="choice-rect-card path-option-card" onclick="selectSubPath('التكنولوجيا التطبيقية')">التكنولوجيا التطبيقية والتقنية</div>
+                    </div>
+                </div>
+
+                <div id="thanaweyaPathsWrapper" style="display: none;">
+                    <p style="font-size:0.85rem; color:var(--color-text-muted); margin-bottom:10px;">شعَب الثانوية العامة:</p>
+                    <div class="choice-rect-grid">
+                        <div class="choice-rect-card path-option-card" onclick="selectSubPath('علمي علوم')">شعبة علمي علوم</div>
+                        <div class="choice-rect-card path-option-card" onclick="selectSubPath('علمي رياضة')">شعبة علمي رياضة</div>
+                        <div class="choice-rect-card path-option-card" onclick="selectSubPath('أدبي')">الشعبة الأدبية</div>
+                    </div>
+                </div>
+
+                <div id="azharPathsWrapper" style="display: none;">
+                    <p style="font-size:0.85rem; color:var(--color-text-muted); margin-bottom:10px;">شعَب الثانوية الأزهرية:</p>
+                    <div class="choice-rect-grid">
+                        <div class="choice-rect-card path-option-card" onclick="selectSubPath('علمي أزهري')">القسم العلمي الأزهري</div>
+                        <div class="choice-rect-card path-option-card" onclick="selectSubPath('أدبي أزهري')">القسم الأدبي الأزهري</div>
+                        <div class="choice-rect-card path-option-card" onclick="selectSubPath('شريعة وإسلامية')">شريعة وقانون وإسلامية</div>
+                    </div>
+                </div>
+
+                <div id="dynamicSubjectsWrapper" style="display: none; margin-top: 15px;">
+                    <div class="section-title"><i class="fa-solid fa-book-bookmark"></i> اختر المادة التخصصية الأساسية للتركيز</div>
+                    <div class="choice-rect-grid" id="subjectsRenderGrid"></div>
+                </div>
+
+                <div class="navigation-footer-buttons">
+                    <button type="button" class="btn-back-premium" onclick="navigateStepBack(1)">رجوع</button>
+                    <button type="button" class="btn-premium-action" style="flex:2;" onclick="validateAndMoveToStep(3)">المرحلة النهائية</button>
+                </div>
+            </div>
+
+            <div class="register-step-segment" id="regStep3" style="display: none;">
+                <div class="section-title"><i class="fa-solid fa-user-gear"></i> الخطوة الثالثة: تحديد الهوية الرقمية وشروط المنصة</div>
+                
+                <p style="font-size:0.85rem; color:var(--color-text-muted); margin-bottom:8px;">اختر أيقونتك الرقمية الرمزية (آفاتار):</p>
+                <div class="avatar-scroll-container" id="avatarScrollContainer">
+                    <!-- سيتم توليد الـ Avatars هنا ديناميكياً عبر JS -->
+                </div>
+
+                <div class="luxury-input-group">
+                    <i class="fa-solid fa-gift"></i>
+                    <input type="text" id="regReferralCode" placeholder="كود صديقك المقرب للحصول على نقاط (اختياري)">
+                </div>
+
+                <div class="premium-terms-container">
+                    <strong>شروط وأحكام منصة اتقِ الله الرقمية للطلاب:</strong><br>
+                    1. يُمنع منعاً باتاً مشاركة حسابك الشخصي أو مفاتيح الدخول السحابية مع أي طالب آخر.<br>
+                    2. يقر الطالب بالالتزام التام بالآداب والأخلاقيات الإسلامية والعامة داخل مجموعات المنصة وغرف العمليات.<br>
+                    3. يُحظر استخدام المنصة في أي أغراض ترويجية أو إعلانية خارج النطاق الأكاديمي والتعليمي المعتمد.<br>
+                    4. تحتفظ إدارة المنصة بالحق الكامل والمطلق في تجميد أو حظر أي حساب يثبت مخالفته لهذه البنود بشكل فوري دون إخطار مسبق.
+                </div>
+
+                <label class="checkbox-luxury-label">
+                    <input type="checkbox" id="regTermsAgreement">
+                    <span>قرأت كافة شروط العضوية والالتزامات وأوافق عليها تماماً</span>
+                </label>
+
+                <div class="navigation-footer-buttons">
+                    <button type="button" class="btn-back-premium" onclick="navigateStepBack(2)">رجوع</button>
+                    <button type="button" class="btn-premium-action" style="flex:2;" onclick="executeCloudRegistration()">
+                        <span>إتمام التحاقك بالمنصة</span>
+                        <div class="spinner" id="registerSpinner"></div>
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, doc, setDoc, getDoc, collection, query, where, getDocs, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // تكوين الفايرباز السحابي لمنصة اتقِ الله كما هو مخصص من طرفكم
+    const firebaseConfig = {
+        apiKey: "AIzaSyBY0bN1N6ECNoJZqhJYoM3fx8y2VqPtv-o",
+        authDomain: "atqallah-e616c.firebaseapp.com",
+        databaseURL: "https://atqallah-e616c-default-rtdb.firebaseio.com",
+        projectId: "atqallah-e616c",
+        storageBucket: "atqallah-e616c.firebasestorage.app",
+        messagingSenderId: "1024323751672",
+        appId: "1:1024323751672:web:2d5f6f7b39bf28d7c4b50d",
+        measurementId: "G-HHCHZTGYN2"
+    };
+
+    // تهيئة المشروع سحابياً
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // ─── Route Guard: إعادة التوجيه إذا كان المستخدم مسجلًا ───
+    (function() {
+        const email = localStorage.getItem('authenticatedUserEmail');
+        const timestamp = localStorage.getItem('sessionTimestamp');
+        if (email && timestamp) {
+            const elapsed = Date.now() - parseInt(timestamp, 10);
+            if (elapsed < 24 * 60 * 60 * 1000) {
+                // الجلسة صالحة — إعادة التوجيه إلى الملف الشخصي
+                window.location.replace('profile.html');
+                return;
+            }
+        }
+        // إذا لم يكن مسجلًا أو انتهت الجلسة — نستمر في auth.html
+    })();
+
+    // شجرة المواد المرتبطة بكل اختيار ومسار دراسي
+    const academicSubjectMatrix = {
+        thanaweya: {
+            "علمي علوم": ["أحياء ثانوية", "كيمياء ثانوية", "فيزياء ثانوية", "جيولوجيا"],
+            "علمي رياضة": ["رياضيات تفاضل وتكامل", "ميكانيكا وهيئة", "فيزياء ثانوية", "كيمياء ثانوية"],
+            "أدبي": ["تاريخ مصر الحديث", "جغرافيا سياسية", "علم النفس والاجتماع", "فلسفة ومنطق"]
+        },
+        bac: {
+            "العلوم والتكنولوجيا": ["العلوم المتكاملة (Integrated Sciences)", "فيزياء البكالوريا", "كيمياء متقدمة", "برمجة وحاسب"],
+            "الأعمال والإدارة": ["مبادئ الاقتصاد والمالية", "محاسبة وإدارة أعمال", "إحصاء وبينات", "لغة ثانية"],
+            "الفنون والآداب": ["اللغة العربية البلاغية", "تاريخ وحضارة", "فنون وفلسفة", "علوم إعلامية"],
+            "التكنولوجيا التطبيقية": ["تقنيات هندسية", "برمجة أنظمة", "شبكات وذكاء اصطناعي", "تصميم رقمي"]
+        },
+        azhar: {
+            "علمي أزهري": ["فقه وأصول", "تفسير وحديث", "فيزياء أزهرية", "كيمياء وأحياء"],
+            "أدبي أزهري": ["توحيد ومنطق", "تاريخ أزهري", "جغرافيا", "بلاغة ونحو"],
+            "شريعة وإسلامية": ["فقه مقارن", "أصول فقه", "حديث دراية", "تفسير تحليلي"]
+        }
+    };
+
+    // حقول الرصد المحلي لتجربة المستخدم الحالية
+    let currentChosenSystem = ""; 
+    let currentChosenSubPath = "";
+    let currentChosenSubject = "";
+    let currentChosenAvatarId = 1;
+
+    // --- توليد الـ Avatars ديناميكياً بدلاً من document.write() ---
+    const avatarContainer = document.getElementById('avatarScrollContainer');
+    if (avatarContainer) {
+        for (let i = 1; i <= 17; i++) {
+            const img = document.createElement('img');
+            img.src = `${i}.webp`;
+            img.className = 'avatar-capsule';
+            img.alt = `آفاتار ${i}`;
+            img.onclick = () => selectAvatarIcon(img, i);
+            img.onerror = function() { this.src = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'; };
+            avatarContainer.appendChild(img);
+        }
+    }
+
+    // --- تابع التشفير الحركي محلياً للبيانات السرية (SHA-256) لحماية الخصوصية المطلقة للأعضاء ---
+    async function hashSecuredData(payload) {
+        const textEncoder = new TextEncoder();
+        const rawData = textEncoder.encode(payload);
+        
+        // توليد Salt عشوائي (16 بايت = 128 bit) للحماية ضد Rainbow Tables
+        const saltBytes = crypto.getRandomValues(new Uint8Array(16));
+        const saltBase64 = btoa(String.fromCharCode(...saltBytes));
+        
+        // دمج البيانات مع الـ Salt (Salt يُضاف في البداية)
+        const combinedData = new Uint8Array(saltBytes.length + rawData.length);
+        combinedData.set(saltBytes, 0);
+        combinedData.set(rawData, saltBytes.length);
+        
+        const hashBuffer = await crypto.subtle.digest('SHA-256', combinedData);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        
+        // التنسيق: salt:hash — يتيح فصل الـ Salt عند التحقق
+        return `${saltBase64}:${hashHex}`;
+    }
+
+    // --- دالة التحقق من كلمة المرور باستخدام Salt المخزن ---
+    async function verifyHashedData(payload, storedHash) {
+        const parts = storedHash.split(':');
+        if (parts.length !== 2) return false; // تنسيق قديم بدون Salt
+        
+        const saltBase64 = parts[0];
+        const saltBytes = Uint8Array.from(atob(saltBase64), c => c.charCodeAt(0));
+        
+        const textEncoder = new TextEncoder();
+        const rawData = textEncoder.encode(payload);
+        
+        // إعادة Hash بنفس الـ Salt
+        const combinedData = new Uint8Array(saltBytes.length + rawData.length);
+        combinedData.set(saltBytes, 0);
+        combinedData.set(rawData, saltBytes.length);
+        
+        const hashBuffer = await crypto.subtle.digest('SHA-256', combinedData);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        
+        return hashHex === parts[1];
+    }
+
+    // --- نظام صلاحية الجلسة (Session Expiry) ---
+    const SESSION_DURATION_MS = 24 * 60 * 60 * 1000; // 24 ساعة
+
+    function setSession() {
+        localStorage.setItem('sessionTimestamp', Date.now().toString());
+    }
+
+    function isSessionValid() {
+        const email = localStorage.getItem('authenticatedUserEmail');
+        const timestamp = localStorage.getItem('sessionTimestamp');
+        if (!email || !timestamp) return false;
+        const elapsed = Date.now() - parseInt(timestamp, 10);
+        return elapsed < SESSION_DURATION_MS;
+    }
+
+    function clearSession() {
+        localStorage.removeItem('authenticatedUserEmail');
+        localStorage.removeItem('sessionTimestamp');
+    }
+
+    // --- Route Guard: التحقق من حالة الجلسة ---
+    function checkRouteGuard() {
+        if (!isSessionValid()) {
+            clearSession();
+            alert('انتهت صلاحية جلستك الأمنية. يرجى تسجيل الدخول مرة أخرى.');
+            window.location.href = 'auth.html';
+            return false;
+        }
+        return true;
+    }
+
+    // --- التنقل الذكي وبث الحركات بين تسجيل الدخول والإنشاء ---
+    window.switchAuthMode = (mode) => {
+        const loginTab = document.getElementById('tabLogin');
+        const registerTab = document.getElementById('tabRegister');
+        const loginBox = document.getElementById('loginFormGroup');
+        const registerBox = document.getElementById('registerFormGroup');
+
+        if(mode === 'login') {
+            loginTab.classList.add('active');
+            registerTab.classList.remove('active');
+            loginBox.style.display = 'block';
+            registerBox.style.display = 'none';
+        } else {
+            registerTab.classList.add('active');
+            loginTab.classList.remove('active');
+            registerBox.style.display = 'block';
+            loginBox.style.display = 'none';
+        }
+    };
+
+    // --- التحقق المؤقت والانتقال للأمام بين شاشات التسجيل المتعددة المراحل ---
+    window.validateAndMoveToStep = (targetStep) => {
+        if (targetStep === 2) {
+            const name = document.getElementById('regFullName').value.trim();
+            const username = document.getElementById('regUsername').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const phone = document.getElementById('regPhone').value.trim();
+            const gov = document.getElementById('regGov').value.trim();
+            const pass = document.getElementById('regPassword').value;
+            const pin = document.getElementById('regSecretPin').value;
+
+            if(!name || !username || !email || !phone || !gov || !pass || !pin) {
+                return alert("أنت على وشك الانطلاق، يرجى ملء كافة حقول الهوية الشخصية واليوزر والمحافظة أولاً!");
+            }
+            if(pin.length < 4) {
+                return alert("كود الأمان السري يجب أن يتكون من 4 أرقام كاملة لحماية حسابك!");
+            }
+        }
+        if (targetStep === 3) {
+            if(!currentChosenSystem) {
+                return alert("يرجى تحديد نظامك التعليمي أولاً (البكالوريا، الثانوية العامة، أو الأزهرية)!");
+            }
+            if(!currentChosenSubPath) {
+                return alert("من فضلك حدد التوجه أو الشعبة الخاصة بك داخل مسارك التعليمي!");
+            }
+        }
+
+        document.querySelectorAll('.register-step-segment').forEach(segment => segment.style.display = 'none');
+        document.getElementById(`regStep${targetStep}`).style.display = 'block';
+    };
+
+    // --- الرجوع للخلف في رحلة التسجيل المتعددة الخطوات ---
+    window.navigateStepBack = (backStep) => {
+        document.querySelectorAll('.register-step-segment').forEach(segment => segment.style.display = 'none');
+        document.getElementById(`regStep${backStep}`).style.display = 'block';
+    };
+
+    // --- التفاعل مع بطاقات تحديد النظام الدراسي المستطيلة والذكية ---
+    window.selectEducationSystem = (systemKey) => {
+        currentChosenSystem = systemKey;
+        
+        // إعادة تهيئة المتغيرات التابعة
+        currentChosenSubPath = "";
+        currentChosenSubject = "";
+        document.getElementById('dynamicSubjectsWrapper').style.display = "none";
+
+        // إدارة التأثير البصري الفاخر للبطاقات النشطة
+        document.getElementById('system_thanaweya').classList.remove('selected');
+        document.getElementById('system_bac').classList.remove('selected');
+        document.getElementById(`system_${systemKey}`).classList.add('selected');
+
+        // إظهار مجموعات المسارات بدقة تامة
+        if(systemKey === 'thanaweya') {
+            document.getElementById('thanaweyaPathsWrapper').style.display = "block";
+            document.getElementById('bacPathsWrapper').style.display = "none";
+        } else {
+            document.getElementById('bacPathsWrapper').style.display = "block";
+            document.getElementById('thanaweyaPathsWrapper').style.display = "none";
+        }
+
+        // إزالة التحديد القديم من بطاقات التخصصات الداخلية
+        document.querySelectorAll('.path-option-card').forEach(card => card.classList.remove('selected'));
+    };
+
+    // --- التفاعل وتوليد شجرة المواد التخصصية بناء على اختيار التخصص ---
+    window.selectSubPath = (subPathKey) => {
+        currentChosenSubPath = subPathKey;
+        currentChosenSubject = "";
+
+        // معالجة الـ Active Class على مستوى العناصر الفاخرة للحدث
+        const clickedCard = event.target.closest('.choice-rect-card');
+        if (!clickedCard) return;
+        const currentActiveGrid = clickedCard.parentElement;
+        if (currentActiveGrid) {
+            currentActiveGrid.querySelectorAll('.choice-rect-card').forEach(card => card.classList.remove('selected'));
+        }
+        clickedCard.classList.add('selected');
+
+        // سحب شبكة عرض المواد وتصفيتها حركياً
+        const subjectsRenderGrid = document.getElementById('subjectsRenderGrid');
+        subjectsRenderGrid.innerHTML = "";
+
+        const availableSubjects = academicSubjectMatrix[currentChosenSystem][subPathKey];
+
+        if (availableSubjects && availableSubjects.length > 0) {
+            availableSubjects.forEach(subjectName => {
+                const rectCard = document.createElement('div');
+                rectCard.className = "choice-rect-card subject-option-card";
+                rectCard.innerText = subjectName;
+                rectCard.onclick = (e) => {
+                    currentChosenSubject = subjectName;
+                    const targetCard = e.target.closest('.choice-rect-card');
+                    if (!targetCard) return;
+                    const parentGrid = targetCard.parentElement;
+                    if (parentGrid) {
+                        parentGrid.querySelectorAll('.choice-rect-card').forEach(c => c.classList.remove('selected'));
+                    }
+                    targetCard.classList.add('selected');
+                };
+                subjectsRenderGrid.appendChild(rectCard);
+            });
+            document.getElementById('dynamicSubjectsWrapper').style.display = "block";
+        } else {
+            // معالجة مسار التخطي أو عدم اتخاذ قرار في أولى ثانوي
+            currentChosenSubject = "المواد العامة والأكاديمية المشتركة";
+            document.getElementById('dynamicSubjectsWrapper').style.display = "none";
+        }
+    };
+
+    // --- التحكم والالتقاط المباشر للآفاتار الرقمي المختار ---
+    window.selectAvatarIcon = (element, id) => {
+        currentChosenAvatarId = id;
+        document.querySelectorAll('.avatar-capsule').forEach(capsule => capsule.classList.remove('selected'));
+        element.classList.add('selected');
+    };
+
+    // --- أولاً: منطق إنشاء العضوية السحابية المتقدمة بالكامل ---
+    window.executeCloudRegistration = async () => {
+        const termsAgreed = document.getElementById('regTermsAgreement').checked;
+        if(!termsAgreed) {
+            return alert("يرجى قراءة شروط استخدام بوابة منصة اتقِ الله السحابية والموافقة عليها للمتابعة!");
+        }
+
+        const spinner = document.getElementById('registerSpinner');
+        spinner.style.display = 'inline-block';
+
+        const rawName = document.getElementById('regFullName').value.trim();
+        const rawEmail = document.getElementById('regEmail').value.trim().toLowerCase();
+        const rawPhone = document.getElementById('regPhone').value.trim();
+        const rawPassword = document.getElementById('regPassword').value;
+        const rawSecretPin = document.getElementById('regSecretPin').value;
+        const referralInput = document.getElementById('regReferralCode').value.trim().toUpperCase();
+
+        try {
+            // التحقق الاستباقي عالي السرعة من عدم تكرار البريد الإلكتروني في الفايرستور
+            const userDocRef = doc(db, "users", rawEmail);
+            const userSnapshot = await getDoc(userDocRef);
+
+            if(userSnapshot.exists()) {
+                spinner.style.display = 'none';
+                return alert("البريد الإلكتروني هذا مقيد ومسجل لدينا بالفعل في قاعدة البيانات السحابية!");
+            }
+
+            // التحقق أيضاً من عدم تكرار رقم الموبايل لضمان الأمان الفردي للحسابات
+            const phoneQuery = query(collection(db, "users"), where("phone", "==", rawPhone));
+            const phoneSnapshot = await getDocs(phoneQuery);
+            if(!phoneSnapshot.empty) {
+                spinner.style.display = 'none';
+                return alert("رقم الموبايل هذا مستخدم بالفعل من قبل طالب آخر على المنصة!");
+            }
+
+            // التشفير المحلي المباشر فورا لكلمات السر والرموز السرية لحماية أمن النظام
+            const encryptedPassword = await hashSecuredData(rawPassword);
+            const encryptedSecretPin = await hashSecuredData(rawSecretPin);
+
+            // توليد كود دعوة فريد وتلقائي مكون من 6 رموز مخصصة لهذا الطالب لاستقطاب أصدقائه لاحقاً
+            const generatedPersonalReferral = Math.random().toString(36).substring(2, 8).toUpperCase();
+
+            // تجهيز هيكل البيانات الأكاديمي الموحد والكامل المتوافق مع متطلبات المنصة الخاصة
+            const completedStudentPayload = {
+                fullName: rawName,
+                email: rawEmail,
+                phone: rawPhone,
+                password: encryptedPassword,
+                secretPin: encryptedSecretPin,
+                educationSystem: currentChosenSystem,
+                subPath: currentChosenSubPath,
+                focusedSubject: currentChosenSubject,
+                avatarId: currentChosenAvatarId,
+                points: 0, // رصيد النقاط التأسيسي صفر
+                myReferralCode: generatedPersonalReferral, // كود صديقك الخاص بالطالب نفسه لنسخه
+                role: "student", // تحديد كونه طالب عادي مش كريم أو عبقرينو لمنع اختراق لوحات العمليات المكثفة
+                status: "active",
+                isBlocked: false, // الحقل الخاص بالحظر والنشاط
+                createdAt: new Date()
+            };
+
+            // الرفع السحابي وتأمين الحساب في مستندات Firestore
+            await setDoc(userDocRef, completedStudentPayload);
+
+            // ميكانيكية احتساب وإضافة نقاط الإحالة والدعوات المتبادلة حركياً
+            if (referralInput) {
+                const referQuery = query(collection(db, "users"), where("myReferralCode", "==", referralInput));
+                const referSnapshot = await getDocs(referQuery);
+                
+                if (!referSnapshot.empty) {
+                    const hostUserDoc = referSnapshot.docs[0];
+                    const hostUserRef = doc(db, "users", hostUserDoc.id);
+                    
+                    // منح الطرف المستضيف (صاحب الكود) نقاط فورية لمساهمته في التوسع
+                    await updateDoc(hostUserRef, { points: increment(50) });
+                    
+                    // منح الطالب الجديد الحالي نقاط الترحيب لمساندته صديقه
+                    await updateDoc(userDocRef, { points: increment(30) });
+                    
+                    alert(`تهانينا الفخمة! تم تفعيل كود الدعوة بنجاح، تم منحك 30 نقطة ومنح صديقك 50 نقطة مكافأة سحابية.`);
+                }
+            }
+
+            // تخزين البريد الإلكتروني في المتصفح محلياً لضبط بروتوكول التوجيه التلقائي للملف الشخصي
+            localStorage.setItem('authenticatedUserEmail', rawEmail);
+            setSession(); // تفعيل صلاحية الجلسة 24 ساعة
+            spinner.style.display = 'none';
+
+            alert(`أهلاً بك في آفاق العلم يا ${rawName}! تم تأسيس عضويتك السحابية بنجاح بنسبة 100%، جاري نقلك لملفك الشخصي..`);
+            window.location.href = "profile.html";
+
+        } catch (error) {
+            spinner.style.display = 'none';
+            alert("فشل بروتوكول الارتباط السحابي نتيجة اضطراب مؤقت، يرجى المحاولة مرة أخرى!");
+            console.error("Cloud Error Details:", error);
+        }
+    };
+
+    // --- ثانياً: منطق تسجيل الدخول المزدوج والمرن (بريد أو هاتف) ---
+    window.executeCloudLogin = async () => {
+        const identifier = document.getElementById('loginIdentifier').value.trim();
+        const pass = document.getElementById('loginPassword').value;
+
+        if(!identifier || !pass) {
+            return alert("من فضلك أدخل البريد/الموبايل مع كلمة السر لإتمام مصادقة الدخول السحابي الموحد!");
+        }
+
+        const spinner = document.getElementById('loginSpinner');
+        spinner.style.display = 'inline-block';
+
+        try {
+            let matchedUserDoc = null;
+            const hashedInputPassword = await hashSecuredData(pass);
+
+            // مسار التحقق المتوازي: هل المُدخل عبارة عن بريد إلكتروني أم رقم هاتف؟
+            if (identifier.includes('@')) {
+                // البحث المباشر عبر المعرف الرئيسي (البريد)
+                const docRef = doc(db, "users", identifier.toLowerCase());
+                const snap = await getDoc(docRef);
+                if(snap.exists()) matchedUserDoc = snap;
+            } else {
+                // البحث حركياً داخل كولكشن المستخدمين عبر حقل الـ Phone
+                const phoneQuery = query(collection(db, "users"), where("phone", "==", identifier));
+                const phoneSnapshot = await getDocs(phoneQuery);
+                if(!phoneSnapshot.empty) {
+                    matchedUserDoc = phoneSnapshot.docs[0];
+                }
+            }
+
+            // في حال عدم العثور التام على التطابق الرقمي
+            if(!matchedUserDoc) {
+                spinner.style.display = 'none';
+                return alert("عذراً، هذا الحساب غير مدرج في سجلات المنصة السحابية، تأكد من صحة البيانات المكتوبة!");
+            }
+
+            const userData = matchedUserDoc.data();
+
+            // الفحص الفوري والدقيق لحالة الحظر الأمنية لحماية غرف العمليات بالمنصة
+            if (userData.isBlocked) {
+                spinner.style.display = 'none';
+                alert("تنبيه أمني: الحساب الخاص بك محظور حالياً لمخالفة القوانين! جاري توجيهك الفوري لصفحة الدعم الفني.");
+                window.location.href = "support.html";
+                return;
+            }
+
+            // فحص ومطابقة الـ Hash الخاص بكلمة السر السريّة الموحدة (مع دعم Salt)
+            const isPasswordMatch = await verifyHashedData(pass, userData.password);
+            if (isPasswordMatch) {
+                // إتمام تسجيل الدخول بنجاح تام وتدوين البريد في الكاش المحلي
+                localStorage.setItem('authenticatedUserEmail', userData.email);
+                setSession(); // تفعيل صلاحية الجلسة 24 ساعة
+                spinner.style.display = 'none';
+                
+                window.location.href = "profile.html";
+            } else {
+                spinner.style.display = 'none';
+                alert("شفرة المرور السريّة المكتوبة غير صحيحة! يرجى إعادة المحاولة بعناية.");
+            }
+
+        } catch (error) {
+            spinner.style.display = 'none';
+            alert("حدث خطأ غير متوقع أثناء عملية المزامنة والمصادقة الأمنية، حاول مجدداً لاحقاً.");
+            console.error("Login Cloud Error:", error);
+        }
+    };
+</script>
+
+<script src="components.js"></script>
+
+</body>
+</html>

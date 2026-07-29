@@ -1,0 +1,15 @@
+{
+  "name": "atqallah",
+  "version": "1.0.0",
+  "description": "منصة اتقِ الله التعليمية | نظام البكالوريا المصري",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "echo 'No build required'",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

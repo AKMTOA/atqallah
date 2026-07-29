@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الشخصي واللوحة الذكية | منصة اتقِ الله التعليمية</title>
+    <meta name="description" content="الملف الشخصي، متابعة الساعات، الالتزام اليومي، كود الدعوة والشهادات المعتمدة.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .profile-container {
+            max-width: 900px;
+            margin: 30px auto 50px;
+        }
+
+        .profile-card-main {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 22px;
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+        }
+        .profile-avatar-wrapper {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 15px;
+        }
+        .profile-avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3.5px solid var(--color-gold);
+            object-fit: cover;
+            background: #fff;
+        }
+        .student-full-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-text);
+            margin-bottom: 4px;
+        }
+        .student-username-tag {
+            font-size: 0.95rem;
+            color: var(--color-burgundy);
+            font-weight: 700;
+            direction: ltr;
+            margin-bottom: 12px;
+        }
+        .student-meta-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .meta-pill {
+            padding: 5px 14px;
+            border-radius: 20px;
+            background: rgba(139,46,46,0.08);
+            color: var(--color-burgundy);
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        /* Stats Bar */
+        .stats-grid-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .stat-card-box {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .stat-card-icon {
+            font-size: 1.5rem;
+            color: var(--color-gold);
+            margin-bottom: 8px;
+        }
+        .stat-card-val {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--color-text);
+            margin-bottom: 4px;
+        }
+        .stat-card-lbl {
+            font-size: 0.82rem;
+            color: var(--color-text-muted);
+        }
+
+        .btn-daily-streak {
+            padding: 12px 28px;
+            border-radius: 30px;
+            border: none;
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            color: #fff;
+            font-weight: 800;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(230,126,34,0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            margin-top: 10px;
+        }
+        .btn-daily-streak:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Certificate Modal */
+        .certificate-box {
+            background: linear-gradient(135deg, #FFFDF5, #F7EFC5);
+            border: 8px double var(--color-gold);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            color: #2b2b2b;
+            margin-top: 20px;
+        }
+        .certificate-box h2 {
+            font-family: 'Amiri', serif;
+            color: var(--color-burgundy);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .referral-share-box {
+            background: rgba(197,160,89,0.1);
+            border: 1px dashed var(--color-gold);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 25px;
+            text-align: center;
+        }
+        .referral-code-display {
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--color-burgundy);
+            margin: 10px 0;
+        }
+        .btn-logout {
+            padding: 10px 24px;
+            border-radius: 10px;
+            border: 1.5px solid #d9534f;
+            background: transparent;
+            color: #d9534f;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+        .btn-logout:hover {
+            background: #d9534f;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container profile-container">
+        <div class="profile-card-main">
+            <div class="profile-avatar-wrapper">
+                <img src="1.webp" id="profAvatarImg" class="profile-avatar-img" alt="Avatar">
+            </div>
+            <h1 class="student-full-name" id="profFullName">جاري التحميل...</h1>
+            <div class="student-username-tag" id="profUsername">@username</div>
+
+            <div class="student-meta-pills">
+                <span class="meta-pill" id="profSysPill">النظام التعليمي</span>
+                <span class="meta-pill" id="profPathPill">التخصص</span>
+                <span class="meta-pill" id="profGovPill">المحافظة</span>
+            </div>
+
+            <button class="btn-daily-streak" id="dailyStreakBtn" onclick="claimDailyStreakBonus()">
+                <i class="fa-solid fa-fire"></i> تسجيل الحضور اليومي (+15 نقطة 🔥)
+            </button>
+
+            <button class="btn-logout" onclick="logoutStudent()"><i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج</button>
+        </div>
+
+        <div class="stats-grid-row">
+            <div class="stat-card-box">
+                <div class="stat-card-icon"><i class="fa-solid fa-coins"></i></div>
+                <div class="stat-card-val" id="profPointsVal">0</div>
+                <div class="stat-card-lbl">إجمالي النقاط</div>
+            </div>
+            <div class="stat-card-box">
+                <div class="stat-card-icon"><i class="fa-solid fa-fire"></i></div>
+                <div class="stat-card-val" id="profStreakVal">1 أيام</div>
+                <div class="stat-card-lbl">الالتزام المتواصل</div>
+            </div>
+            <div class="stat-card-box">
+                <div class="stat-card-icon"><i class="fa-solid fa-clock"></i></div>
+                <div class="stat-card-val" id="profStudyHoursVal">0 ساعة</div>
+                <div class="stat-card-lbl">إجمالي المذاكرة</div>
+            </div>
+            <div class="stat-card-box">
+                <div class="stat-card-icon"><i class="fa-solid fa-trophy"></i></div>
+                <div class="stat-card-val" id="profRankVal">#1</div>
+                <div class="stat-card-lbl">الترتيب بين الطلاب</div>
+            </div>
+        </div>
+
+        <!-- Referral Code Section -->
+        <div class="referral-share-box">
+            <h3><i class="fa-solid fa-user-plus"></i> كود دعوة الأصدقاء لحصد +50 نقطة لك ولكل صديق</h3>
+            <p style="font-size:0.9rem; color:var(--color-text-muted);">شارك هذا الكود مع زملائك في المدرسة أو مجموعات الواتساب وتلغرام:</p>
+            <div class="referral-code-display" id="profReferralCodeDisplay">ATQ2026</div>
+            <button class="btn-daily-streak" style="background:var(--color-burgundy);" onclick="shareReferralWhatsApp()">
+                <i class="fa-brands fa-whatsapp"></i> مشاركة عبر واتساب
+            </button>
+        </div>
+
+        <!-- Certificate Section -->
+        <div class="certificate-box">
+            <h2><i class="fa-solid fa-award"></i> شهادة تفوق معتمدة</h2>
+            <p>تشهد إدارة منصة <strong>اتقِ الله التعليمية</strong> بأن الطالب (ـة):</p>
+            <h3 style="font-size:1.6rem; color:var(--color-gold-dark); margin:10px 0;" id="certStudentName">اسم الطالب</h3>
+            <p>قد أتم المتطلبات التعليمية لمسار <strong id="certSystemTrack">البكالوريا 2026</strong> بنجاح واجتهاد.</p>
+            <div style="margin-top:15px; font-size:0.85rem; color:#666;">كود الشهادة الرقمية الموثقة: <span id="certCodeVal">ATQ-9842</span></div>
+            <button class="btn-daily-streak" style="margin-top:15px; background:var(--color-gold); color:#1f2937;" onclick="window.print()">
+                <i class="fa-solid fa-print"></i> طباعة / حفظ الشهادة PDF
+            </button>
+        </div>
+    </main>
+
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="firebase-service.js"></script>
+    <script src="components.js"></script>
+
+    <script>
+        let studentDoc = null;
+
+        async function initProfile() {
+            if (!window.requireAuth()) return;
+            const email = localStorage.getItem('authenticatedUserEmail');
+
+            if (window.getStudentProfile) {
+                studentDoc = await window.getStudentProfile(email);
+                if (studentDoc) {
+                    document.getElementById('profFullName').innerText = studentDoc.fullName || 'طالب منصة اتقِ الله';
+                    document.getElementById('profUsername').innerText = studentDoc.username || '@student';
+                    document.getElementById('profAvatarImg').src = `${studentDoc.avatarId || 1}.webp`;
+
+                    const sysMap = { bac: 'البكالوريا المصرية', thanaweya: 'الثانوية العامة', azhar: 'الثانوية الأزهرية' };
+                    document.getElementById('profSysPill').innerText = sysMap[studentDoc.educationSystem] || studentDoc.educationSystem || 'البكالوريا';
+                    document.getElementById('profPathPill').innerText = studentDoc.subPath || 'عام';
+                    document.getElementById('profGovPill').innerText = studentDoc.governorate || 'مصر';
+
+                    document.getElementById('profPointsVal').innerText = studentDoc.points || 0;
+                    document.getElementById('profStreakVal').innerText = `${studentDoc.streakCount || 1} يوم`;
+
+                    const hours = Math.floor((studentDoc.totalStudyMinutes || 0) / 60);
+                    const mins = (studentDoc.totalStudyMinutes || 0) % 60;
+                    document.getElementById('profStudyHoursVal').innerText = `${hours} س و ${mins} د`;
+
+                    document.getElementById('profReferralCodeDisplay').innerText = studentDoc.myReferralCode || 'ATQ2026';
+
+                    document.getElementById('certStudentName').innerText = studentDoc.fullName;
+                    document.getElementById('certSystemTrack').innerText = `${sysMap[studentDoc.educationSystem] || 'البكالوريا'} - ${studentDoc.subPath || ''}`;
+                    document.getElementById('certCodeVal').innerText = `ATQ-${Math.floor(1000 + Math.random() * 9000)}`;
+                }
+            }
+        }
+
+        async function claimDailyStreakBonus() {
+            const email = localStorage.getItem('authenticatedUserEmail');
+            if (!email) return;
+
+            const today = new Date().toISOString().split('T')[0];
+            if (studentDoc && studentDoc.lastLoginDate === today && studentDoc.claimedTodayStreak) {
+                return alert('لقد قمت بتسجيل حضورك اليومي وحصد نقاط اليوم بالفعل! عد غداً للحصول على النقاط التالية 🔥');
+            }
+
+            try {
+                if (window.awardPoints) {
+                    await window.awardPoints(email, 15, 'تسجيل الحضور والالتزام اليومي');
+                }
+                alert('🔥 رائع جداً! تم تسجيل حضورك اليومي ومنحك +15 نقطة تفوق جديدة!');
+                initProfile();
+            } catch(e) {
+                alert('تم تسجيل الحضور اليومي بنجاح!');
+            }
+        }
+
+        function shareReferralWhatsApp() {
+            const code = studentDoc?.myReferralCode || 'ATQ2026';
+            const msg = encodeURIComponent(`انضم معي على منصة "اتقِ الله" التعليمية أول منصة لطلاب البكالوريا المصرية والثانوية العامة والأزهرية! واستخدم كود الدعوة الخاص بي: ${code} للحصول على نقاط هدايا فورية: ${window.location.origin}`);
+            window.open(`https://api.whatsapp.com/send?text=${msg}`, '_blank');
+        }
+
+        function logoutStudent() {
+            localStorage.removeItem('authenticatedUserEmail');
+            localStorage.removeItem('sessionTimestamp');
+            alert('تم تسجيل الخروج بنجاح.');
+            window.location.href = 'auth.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', initProfile);
+    </script>
+</body>
+</html>

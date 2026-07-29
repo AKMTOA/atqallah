@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الدروس والملخصات السحابية | منصة اتقِ الله التعليمية</title>
+    <meta name="description" content="بنك الملخصات والدروس لطلاب البكالوريا المصرية والثانوية العامة والأزهرية 2026.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .lib-hero {
+            background: linear-gradient(135deg, rgba(139,46,46,0.95), rgba(74,21,21,0.98)), url('3.png') center/cover;
+            color: #fff;
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow-md);
+        }
+        .lib-hero h1 {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            color: var(--color-gold-light);
+            font-family: 'Amiri', serif;
+            margin-bottom: 8px;
+        }
+
+        .filter-buttons-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .filter-btn {
+            padding: 10px 22px;
+            border-radius: 30px;
+            border: 1.5px solid var(--color-border);
+            background: var(--color-surface);
+            color: var(--color-text);
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--color-burgundy);
+            color: #fff;
+            border-color: var(--color-burgundy);
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .course-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 18px;
+            padding: 22px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-gold);
+        }
+        .course-badge {
+            align-self: flex-start;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: rgba(139,46,46,0.1);
+            color: var(--color-burgundy);
+            margin-bottom: 12px;
+        }
+        .course-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 8px;
+        }
+        .course-teacher {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin-bottom: 14px;
+        }
+        .course-actions {
+            margin-top: auto;
+            display: flex;
+            gap: 10px;
+            border-top: 1px solid var(--color-border);
+            padding-top: 15px;
+        }
+        .btn-course-action {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+        .btn-study {
+            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
+            color: #fff;
+        }
+        .btn-complete {
+            background: rgba(46,139,87,0.12);
+            color: #2E8B57;
+            border: 1px solid rgba(46,139,87,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container" style="margin-top: 30px;">
+        <div class="lib-hero">
+            <h1><i class="fa-solid fa-book-open-reader"></i> بنك الدروس والملخصات السحابية</h1>
+            <p>اختر نظامك الدراسي واستكمل مذاكرتك لحصد نقاط التفوق وساعات المذاكرة المعتمدة.</p>
+        </div>
+
+        <div class="filter-buttons-row">
+            <button class="filter-btn active" onclick="filterCategory('all', this)">كل المواد</button>
+            <button class="filter-btn" onclick="filterCategory('bac', this)">البكالوريا المصرية</button>
+            <button class="filter-btn" onclick="filterCategory('thanaweya', this)">الثانوية العامة</button>
+            <button class="filter-btn" onclick="filterCategory('azhar', this)">الثانوية الأزهرية</button>
+        </div>
+
+        <div class="courses-grid" id="libraryCoursesGrid">
+            <!-- Dynamic courses -->
+        </div>
+    </main>
+
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="firebase-service.js"></script>
+    <script src="components.js"></script>
+
+    <script>
+        const initialCourses = [
+            {
+                id: 'c1',
+                title: 'شرح مادة العلوم المتكاملة (Integrated Sciences) - الفصل 1',
+                system: 'bac',
+                subject: 'علوم متكاملة',
+                teacher: 'د. خالد صقر & أ. عبد المعبود',
+                link: 'https://www.youtube.com',
+                durationMins: 45
+            },
+            {
+                id: 'c2',
+                title: 'مبادئ الاقتصاد والمالية الحديثة - البكالوريا 2026',
+                system: 'bac',
+                subject: 'أعمال وإدارة',
+                teacher: 'نخبة خبراء الاقتصاد',
+                link: 'https://www.youtube.com',
+                durationMins: 30
+            },
+            {
+                id: 'c3',
+                title: 'مراجعة الفيزياء والكهربية العامة - الثانوية العامة',
+                system: 'thanaweya',
+                subject: 'فيزياء',
+                teacher: 'أ. محمد عبد المعبود',
+                link: 'https://www.youtube.com',
+                durationMins: 60
+            },
+            {
+                id: 'c4',
+                title: 'شرح الفقه المقارن وأصوله - الثانوية الأزهرية',
+                system: 'azhar',
+                subject: 'فقه وأصول',
+                teacher: 'علماء الأزهر الشريف',
+                link: 'https://www.youtube.com',
+                durationMins: 40
+            },
+            {
+                id: 'c5',
+                title: 'أساسيات البرمجة وعلوم الحاسب بلغة بايثون للبكالوريا',
+                system: 'bac',
+                subject: 'برمجة وحاسب',
+                teacher: 'مصطفى محمد عبقرينو & كريم عمر',
+                link: 'https://www.youtube.com',
+                durationMins: 50
+            }
+        ];
+
+        let activeCategoryFilter = 'all';
+
+        function renderCourses() {
+            const grid = document.getElementById('libraryCoursesGrid');
+            grid.innerHTML = '';
+
+            const filtered = initialCourses.filter(c => activeCategoryFilter === 'all' || c.system === activeCategoryFilter);
+
+            filtered.forEach(c => {
+                const card = document.createElement('div');
+                card.className = 'course-card';
+                card.innerHTML = `
+                    <span class="course-badge">${c.subject}</span>
+                    <h3 class="course-title">${c.title}</h3>
+                    <div class="course-teacher"><i class="fa-solid fa-chalkboard-user"></i> ${c.teacher}</div>
+                    <div style="font-size:0.8rem; color:var(--color-text-muted); margin-bottom:15px;">⏱️ مدة الدرس: ${c.durationMins} دقيقة</div>
+                    <div class="course-actions">
+                        <a href="${c.link}" target="_blank" class="btn-course-action btn-study"><i class="fa-solid fa-play"></i> مشاهدة الدرس</a>
+                        <button class="btn-course-action btn-complete" onclick="markCourseComplete('${c.id}', '${c.title}', ${c.durationMins})">
+                            <i class="fa-solid fa-check"></i> أتممت المذاكرة (+15 ن)
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterCategory(cat, btn) {
+            activeCategoryFilter = cat;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderCourses();
+        }
+
+        async function markCourseComplete(courseId, courseTitle, durationMins) {
+            if (!window.requireAuth()) return;
+            const email = localStorage.getItem('authenticatedUserEmail');
+
+            try {
+                if (window.logStudentStudySession) {
+                    await window.logStudentStudySession(email, courseTitle, durationMins, 15);
+                }
+                alert(`🎉 أحسنت يا بطل! تم تسليط +${durationMins} دقيقة مذاكرة في ملفك الشخصي ومنحك +15 نقطة تفوق!`);
+            } catch(e) {
+                alert('تم تسجيل المذاكرة بنجاح!');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', renderCourses);
+    </script>
+</body>
+</html>

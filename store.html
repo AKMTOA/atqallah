@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر استبدال النقاط والهدايا | منصة اتقِ الله التعليمية</title>
+    <meta name="description" content="استبدل نقاطك التحفيزية بهدايا حقيقية، كروت شحن، مذكرات حصريّة واشتراكات VIP.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .store-hero {
+            background: linear-gradient(135deg, rgba(139,46,46,0.95), rgba(74,21,21,0.98)), url('10.png') center/cover;
+            color: #fff;
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-lg);
+        }
+        .store-hero h1 {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            color: var(--color-gold-light);
+            font-family: 'Amiri', serif;
+            margin-bottom: 10px;
+        }
+        .points-balance-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(197,160,89,0.25);
+            border: 1.5px solid var(--color-gold);
+            color: var(--color-gold-light);
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-top: 15px;
+        }
+
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .reward-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 18px;
+            padding: 24px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+        }
+        .reward-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-gold);
+        }
+        .reward-icon-box {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(139,46,46,0.08);
+            color: var(--color-burgundy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 16px;
+        }
+        .reward-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 8px;
+        }
+        .reward-desc {
+            font-size: 0.88rem;
+            color: var(--color-text-muted);
+            margin-bottom: 16px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        .reward-cost {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--color-burgundy);
+            margin-bottom: 16px;
+        }
+        .btn-redeem {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn-redeem:hover {
+            box-shadow: 0 4px 15px rgba(139,46,46,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container" style="margin-top: 30px;">
+        <div class="store-hero">
+            <h1><i class="fa-solid fa-gift"></i> متجر استبدال النقاط والهدايا</h1>
+            <p>كل تفاعل على المنصة، المذاكرة، حل الاختبارات ونشر الملخصات يمنحك نقاطاً حقيقية لاستبدالها فوراً!</p>
+            <div class="points-balance-badge" id="studentPointsDisplay">
+                <i class="fa-solid fa-coins"></i> رصيد نقاطك الحالي: <span id="currentPointsVal">0</span> نقطة
+            </div>
+        </div>
+
+        <div class="store-grid">
+            <div class="reward-card">
+                <div class="reward-icon-box"><i class="fa-solid fa-crown"></i></div>
+                <h3 class="reward-title">عضوية VIP للمنصة (شهر مجاني)</h3>
+                <p class="reward-desc">تحميل جميع مذكرات المدرسين الحصرية وتصفح الدروس بدون أي إعلانات.</p>
+                <div class="reward-cost">300 نقطة</div>
+                <button class="btn-redeem" onclick="redeemStoreItem('عضوية VIP', 300)">استبدال الآن</button>
+            </div>
+
+            <div class="reward-card">
+                <div class="reward-icon-box"><i class="fa-solid fa-mobile-screen"></i></div>
+                <h3 class="reward-title">كارت شحن موبايل بقيمة 50 ج</h3>
+                <p class="reward-desc">كارت شحن فوري لرقمك المسجل (فودافون/أورانج/اتصالات/وي).</p>
+                <div class="reward-cost">500 نقطة</div>
+                <button class="btn-redeem" onclick="redeemStoreItem('كارت شحن 50 ج', 500)">استبدال الآن</button>
+            </div>
+
+            <div class="reward-card">
+                <div class="reward-icon-box"><i class="fa-solid fa-file-pdf"></i></div>
+                <h3 class="reward-title">حقيبة ملخصات البكالوريا الشاملة PDF</h3>
+                <p class="reward-desc">تجميعة المراجعة النهائية لمواد البكالوريا والثانوية العامة 2026 جاهزة للطباعة.</p>
+                <div class="reward-cost">150 نقطة</div>
+                <button class="btn-redeem" onclick="redeemStoreItem('حقيبة ملخصات PDF', 150)">استبدال الآن</button>
+            </div>
+
+            <div class="reward-card">
+                <div class="reward-icon-box"><i class="fa-solid fa-percent"></i></div>
+                <h3 class="reward-title">خصم 50% على حصة مدرس خصوصي</h3>
+                <p class="reward-desc">كوبون خصم مباشر للحصص المباشرة ومجموعات المراجعة.</p>
+                <div class="reward-cost">250 نقطة</div>
+                <button class="btn-redeem" onclick="redeemStoreItem('كوبون خصم مدرس 50%', 250)">استبدال الآن</button>
+            </div>
+
+            <div class="reward-card">
+                <div class="reward-icon-box"><i class="fa-solid fa-award"></i></div>
+                <h3 class="reward-title">شهادة تفوق إلكترونية باسمك</h3>
+                <p class="reward-desc">شهادة تقدير معتمدة من منصة اتقِ الله يمكنك تحميلها وطباعتها.</p>
+                <div class="reward-cost">200 نقطة</div>
+                <button class="btn-redeem" onclick="redeemStoreItem('شهادة تفوق إلكترونية', 200)">استبدال الآن</button>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="firebase-service.js"></script>
+    <script src="components.js"></script>
+
+    <script>
+        let userPoints = 0;
+
+        async function initStore() {
+            const email = localStorage.getItem('authenticatedUserEmail');
+            if (email && window.getStudentProfile) {
+                const profile = await window.getStudentProfile(email);
+                if (profile) {
+                    userPoints = profile.points || 0;
+                    document.getElementById('currentPointsVal').innerText = userPoints;
+                }
+            }
+        }
+
+        async function redeemStoreItem(itemName, cost) {
+            if (!window.requireAuth()) return;
+            const email = localStorage.getItem('authenticatedUserEmail');
+
+            if (userPoints < cost) {
+                return alert(`عذراً عزيزي الطالب! نقاطك الحالية (${userPoints}) لا تكفي لاستبدال "${itemName}". تحتاج إلى ${cost} نقطة.`);
+            }
+
+            if (confirm(`هل أنت تأكد من رغبتك في استبدال ${cost} نقطة مقابل "${itemName}"؟`)) {
+                try {
+                    if (window.awardPoints) {
+                        await window.awardPoints(email, -cost, `استبدال هدية: ${itemName}`);
+                    }
+                    userPoints -= cost;
+                    document.getElementById('currentPointsVal').innerText = userPoints;
+                    alert(`🎉 تم استبدال "${itemName}" بنجاح! سيتم التواصل معك عبر الدعم الفني أو تسليم الهدية في حسابك خلال دقائق.`);
+                } catch(e) {
+                    alert('حدث خطأ أثناء الاستبدال: ' + e.message);
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initStore);
+    </script>
+</body>
+</html>

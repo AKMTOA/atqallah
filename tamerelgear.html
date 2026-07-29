@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>غرفة العمليات العليا السحابية | منصة اتقِ الله</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        :root {
+            --color-bg: #F5F1E6; 
+            --color-card-bg: rgba(255, 255, 255, 0.95);
+            --color-burgundy: #8B2E2E; 
+            --color-burgundy-dark: #5A1C1C;
+            --color-gold: #C5A059; 
+            --color-text-main: #2D2522;
+            --color-text-muted: #7A706C;
+            --glass-border: rgba(139, 46, 46, 0.15);
+            --radius-main: 16px;
+        }
+
+        * { box-sizing: border-box; font-family: 'Cairo', sans-serif; margin: 0; padding: 0; }
+        body { background-color: var(--color-bg); color: var(--color-text-main); display: flex; min-height: 100vh; overflow-x: hidden; }
+
+        /* شاشة القفل الأمنية المطلقة */
+        #absolute-lock-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #140506;
+            z-index: 99999; display: flex; justify-content: center; align-items: center; color: #fff; text-align: center;
+        }
+        .lock-box h1 { color: var(--color-gold); font-size: 32px; margin-bottom: 10px; font-weight: 900; }
+
+        /* القائمة الجانبية الفاخرة */
+        .admin-sidebar {
+            width: 300px; background: linear-gradient(180deg, var(--color-burgundy-dark) 0%, #300d0d 100%);
+            color: white; padding: 25px; position: fixed; height: 100vh; overflow-y: auto; right: 0; top: 0;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.15); border-left: 2px solid var(--color-gold);
+        }
+        .admin-brand { text-align: center; padding-bottom: 25px; border-bottom: 1px solid rgba(197, 160, 89, 0.2); margin-bottom: 25px; }
+        .admin-brand img { width: 65px; margin-bottom: 10px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
+        .admin-brand h2 { font-size: 20px; color: var(--color-gold); font-weight: 900; }
+        .admin-brand p { font-size: 11px; opacity: 0.7; letter-spacing: 1px; }
+
+        .menu-title { font-size: 12px; color: var(--color-gold); text-transform: uppercase; margin: 20px 0 10px 0; font-weight: 700; opacity: 0.8; }
+        .nav-link {
+            display: flex; align-items: center; gap: 12px; padding: 12px 15px; color: rgba(255,255,255,0.8);
+            text-decoration: none; border-radius: var(--radius-main); margin-bottom: 6px; cursor: pointer; transition: all 0.3s ease;
+        }
+        .nav-link i { width: 20px; text-align: center; font-size: 16px; }
+        .nav-link:hover, .nav-link.active { background: var(--color-burgundy); color: white; border-right: 4px solid var(--color-gold); padding-right: 20px; }
+        
+        /* روابط الوصول السريع لكافة صفحات المنصة */
+        .shortcut-badge { background: rgba(197, 160, 89, 0.2); color: var(--color-gold); font-size: 11px; padding: 2px 8px; border-radius: 10px; margin-right: auto; }
+
+        /* منطقة المحتوى الرئيسي */
+        .admin-container { margin-right: 300px; flex: 1; padding: 40px; position: relative; }
+        .header-panel { display: flex; justify-content: space-between; align-items: center; margin-bottom: 35px; border-bottom: 2px solid rgba(139, 46, 46, 0.05); padding-bottom: 20px; }
+        .header-panel h1 { font-size: 28px; font-weight: 900; color: var(--color-burgundy); }
+        .user-profile-badge { display: flex; align-items: center; gap: 12px; background: white; padding: 8px 18px; border-radius: 50px; border: 1px solid var(--glass-border); }
+        .user-profile-badge span { font-weight: 700; font-size: 14px; }
+
+        /* الكروت الزجاجية العصرية */
+        .glass-panel { background: var(--color-card-bg); border-radius: var(--radius-main); padding: 30px; border: 1px solid var(--glass-border); box-shadow: 0 10px 30px rgba(139,46,46,0.03); margin-bottom: 30px; }
+        .panel-heading { font-size: 20px; font-weight: 800; color: var(--color-burgundy); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        
+        /* عناصر النماذج والاستمارات */
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 20px; }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group.full-width { grid-column: 1 / -1; }
+        label { font-size: 14px; font-weight: 700; color: var(--color-text-main); }
+        input, textarea, select {
+            padding: 14px; border: 1px solid rgba(139, 46, 46, 0.15); border-radius: 10px; background: #fff;
+            font-size: 14px; color: var(--color-text-main); outline: none; transition: all 0.3s ease;
+        }
+        input:focus, textarea:focus, select:focus { border-color: var(--color-burgundy); box-shadow: 0 0 0 3px rgba(139, 46, 46, 0.1); }
+        
+        /* الأزرار الاحترافية */
+        .btn-prime { background: linear-gradient(135deg, var(--color-burgundy) 0%, var(--color-burgundy-dark) 100%); color: white; border: none; padding: 14px 28px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; justify-content: center; }
+        .btn-prime:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(139,46,46,0.2); }
+        .btn-danger { background: #c62828; color: white; border: none; padding: 8px 14px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 13px; }
+        .btn-edit { background: #1565c0; color: white; border: none; padding: 8px 14px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 13px; }
+
+        /* الجداول الذكية المتجاوبة */
+        .table-responsive { overflow-x: auto; width: 100%; margin-top: 15px; }
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; }
+        th, td { padding: 15px; text-align: right; font-size: 14px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        th { background-color: var(--color-burgundy); color: white; font-weight: 700; }
+        tr:hover { background-color: rgba(197, 160, 89, 0.05); }
+
+        /* الحالات والإشارات التوضيحية */
+        .badge { padding: 5px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; display: inline-block; }
+        .badge-active { background: #e8f5e9; color: #2e7d32; }
+        .badge-blocked { background: #ffebee; color: #c62828; }
+        .badge-alert { background: #fff3e0; color: #ef6c00; font-weight: 900; }
+
+        .switch-container { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+        .loader-backdrop { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.7); display:none; justify-content:center; align-items:center; z-index:9999; }
+    </style>
+</head>
+<body>
+
+    <div id="absolute-lock-screen">
+        <div class="lock-box">
+            <i class="fa-solid fa-building-shield fa-4x" style="color: var(--color-gold); margin-bottom: 25px; animation: pulse 2s infinite;"></i>
+            <h1>تأمين النظام الفيدرالي الفوري</h1>
+            <p id="lock-status-text">جاري فحص بروتوكولات وجدران الحماية الرقمية لـ "اتقِ الله"..</p>
+        </div>
+    </div>
+
+    <div class="loader-backdrop" id="globalLoader">
+        <i class="fa-solid fa-circle-notch fa-spin fa-3x" style="color: var(--color-burgundy)"></i>
+    </div>
+
+    <div class="admin-sidebar">
+        <div class="admin-brand">
+            <img src="at.webp" alt="Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3413/3413535.png'">
+            <h2>لوحة الإدارة العليا</h2>
+            <p>اتقِ الله • SUPER ADMIN PANEL</p>
+        </div>
+
+        <div class="menu-title">غرفة التحكم المركزية</div>
+        <div class="nav-link active" onclick="switchSection('dashboard-section', this)"><i class="fa-solid fa-sliders"></i> واجهة الرئيسية وبث الأخبار</div>
+        <div class="nav-link" onclick="switchSection('articles-section', this)"><i class="fa-solid fa-feather-pointed"></i> صياغة وإدارة المقالات</div>
+        <div class="nav-link" onclick="switchSection('library-section', this)"><i class="fa-solid fa-book-journal-whills"></i> إضافة وإدارة الكورسات</div>
+        <div class="nav-link" onclick="switchSection('students-section', this)"><i class="fa-solid fa-user-shield"></i> جدار رصد وحظر الطلاب</div>
+        <div class="nav-link" onclick="switchSection('logs-section', this)"><i class="fa-solid fa-fingerprint"></i> سجلات الأمان واختراق اللوحة</div>
+        <div class="nav-link" onclick="switchSection('vault-section', this)"><i class="fa-solid fa-vault"></i> خزنة كلمات السر العليا</div>
+
+        <div class="menu-title">خريطة كافة صفحات المنصة للوصول السريع</div>
+        <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> شاشة المنصة الرئيسية <span class="shortcut-badge">index.html</span></a>
+        <a href="news.html" class="nav-link"><i class="fa-solid fa-newspaper"></i> مركز الأخبار والمقالات <span class="shortcut-badge">news.html</span></a>
+        <a href="library.html" class="nav-link"><i class="fa-solid fa-book-open"></i> بنك الملخصات والكورسات <span class="shortcut-badge">library.html</span></a>
+        <a href="guide.html" class="nav-link"><i class="fa-solid fa-compass"></i> دليل البكالوريا الشامل <span class="shortcut-badge">guide.html</span></a>
+        <a href="profile.html" class="nav-link"><i class="fa-solid fa-id-card"></i> بوابة الحساب المتقدمة <span class="shortcut-badge">profile.html</span></a>
+        <a href="auth.html" class="nav-link"><i class="fa-solid fa-lock-open"></i> بوابة الدخول السحابية <span class="shortcut-badge">auth.html</span></a>
+    </div>
+
+    <div class="admin-container">
+        <div class="header-panel">
+            <h1 id="dynamicSectionTitle">التحكم الفوري بالواجهة الرئيسية</h1>
+            <div class="user-profile-badge">
+                <i class="fa-solid fa-user-gear" style="color: var(--color-gold)"></i>
+                <span id="currentAdminName">مطور المنصة</span>
+            </div>
+        </div>
+
+        <div id="dashboard-section" class="panel-tab">
+            <div class="glass-panel">
+                <div class="panel-heading"><i class="fa-solid fa-bullhorn"></i> البث اللحظي لشريط الأخبار والزر الإجرائي</div>
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label>نص شريط الأخبار المتحرك بالرئيسية (Realtime Ticker Tape):</label>
+                        <input type="text" id="tickerText" placeholder="مثال: تم إتاحة أقوى ملخص شامل لمادة العلوم المتكاملة للتحميل السحابي الآن...">
+                    </div>
+                    <div class="form-group">
+                        <label>نص زر الإجراء الديناميكي (Hero Button Text):</label>
+                        <input type="text" id="heroBtnText" placeholder="مثال: انتقل لبنك الملخصات">
+                    </div>
+                    <div class="form-group">
+                        <label>رابط زر الإجراء الوظيفي (Hero Button URL):</label>
+                        <input type="text" id="heroBtnLink" placeholder="مثال: library.html">
+                    </div>
+                    <div class="form-group">
+                        <label>حالة ظهور الزر بالرئيسية:</label>
+                        <select id="isBtnVisible">
+                            <option value="true">إظهار الزر فوراً للعامة</option>
+                            <option value="false">إخفاء الزر بالكامل من الواجهة</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn-prime" onclick="saveHomepageConfig()"><i class="fa-solid fa-cloud-arrow-up"></i> حفظ وتحديث الواجهة لحظياً</button>
+            </div>
+        </div>
+
+        <div id="articles-section" class="panel-tab" style="display:none;">
+            <div class="glass-panel">
+                <div class="panel-heading" id="articleFormTitle"><i class="fa-solid fa-pen-nib"></i> صياغة ونشر مقال أكاديمي جديد</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>عنوان المقال:</label>
+                        <input type="text" id="articleTitle">
+                    </div>
+                    <div class="form-group">
+                        <label>التصنيف الفئوي (Tag):</label>
+                        <select id="articleTag">
+                            <option value="all">عام</option>
+                            <option value="وزاري">قرارات وزارية ومستندات</option>
+                            <option value="علمي">إرشادات علمية وتوجيه</option>
+                            <option value="جدول">تحديثات المناهج والجداول</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>رابط الصورة البصرية المصاحبة (Image URL):</label>
+                        <input type="text" id="articleImg" placeholder="رابط مباشر للصورة أو اتركها افتراضية">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>الملخص القصير (Summary):</label>
+                        <input type="text" id="articleSummary" placeholder="نبذة مختصرة تظهر في الكرت الخارجي">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>المحتوى النصي الكامل للمقال (Article Content):</label>
+                        <textarea id="articleBody" rows="6" placeholder="اكتب تفاصيل المقال التعليمي بالكامل هنا..."></textarea>
+                    </div>
+                </div>
+                <button class="btn-prime" id="btnSaveArticle" onclick="publishOrUpdateArticle()"><i class="fa-solid fa-paper-plane"></i> اعتماد المقال في قاعدة البيانات</button>
+                <button class="btn-danger" id="btnCancelArticleEdit" style="display:none; margin-right:10px;" onclick="resetArticleForm()">إلغاء التعديل</button>
+            </div>
+
+            <div class="glass-panel">
+                <div class="panel-heading"><i class="fa-solid fa-list-check"></i> مستودع المقالات المنشورة الحالية</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>العنوان</th>
+                                <th>الفئة</th>
+                                <th>التاريخ</th>
+                                <th>التحكم والإجراءات السحابية</th>
+                            </tr>
+                        </thead>
+                        <tbody id="articlesTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="library-section" class="panel-tab" style="display:none;">
+            <div class="glass-panel">
+                <div class="panel-heading" id="courseFormTitle"><i class="fa-solid fa-folder-plus"></i> رفع وإدراج كورس أو ملخص أكاديمي</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>عنوان الكورس / المراجعة الشاملة:</label>
+                        <input type="text" id="courseTitle">
+                    </div>
+                    <div class="form-group">
+                        <label>اسم المعلم الموجه / المطور:</label>
+                        <input type="text" id="courseInstructor" placeholder="مثال: نخبة من مطوري المنصة">
+                    </div>
+                    <div class="form-group">
+                        <label>التصنيف الدراسي لمسار الكورس:</label>
+                        <select id="courseTag">
+                            <option value="الكمياء">الكمياء</option>
+                            <option value="الفزياء">الفزياء</option>
+                            <option value="البرمجه">البرمجه</option>
+                            <option value="الاغه الانجليزيه">اللغه الانجليزيه</option>
+                            <option value="اللغه العربيه">اللغه العربيه</option>
+                            <option value="الرياضيات">الرياضيات</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>رابط ملف الـ PDF السحابي:</label>
+                        <input type="text" id="coursePdf" placeholder="رابط الملف المرفوع في فايربيز ستوريدج أو درايف">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>رابط الشرح المرئي للمحاضرة (Video URL - إن وجد):</label>
+                        <input type="text" id="courseVideo" placeholder="رابط يوتيوب أو فيديو توضيحي">
+                    </div>
+                </div>
+                <button class="btn-prime" id="btnSaveCourse" onclick="publishOrUpdateCourse()"><i class="fa-solid fa-book-bookmark"></i> حقن وتثبيت الكورس فوراً</button>
+                <button class="btn-danger" id="btnCancelCourseEdit" style="display:none; margin-right:10px;" onclick="resetCourseForm()">إلغاء</button>
+            </div>
+
+            <div class="glass-panel">
+                <div class="panel-heading"><i class="fa-solid fa-layer-group"></i> بنك الكورسات والملخصات الفعالة بالمنصة</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>عنوان المحاضرة/الملخص</th>
+                                <th>المعلم</th>
+                                <th>المسار</th>
+                                <th>الإعجابات</th>
+                                <th>إجراءات التغيير والحذف</th>
+                            </tr>
+                        </thead>
+                        <tbody id="libraryTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="students-section" class="panel-tab" style="display:none;">
+            <div class="glass-panel">
+                <div class="panel-heading"><i class="fa-solid fa-users-viewfinder"></i> رادار مراقبة وضبط حسابات الطلاب المشتركين</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>الاسم الرباعي للطالب</th>
+                                <th>البريد الإلكتروني الموثق</th>
+                                <th>المحفظة الرقمية (نقاط)</th>
+                                <th>الحالة الأمنية</th>
+                                <th>عمليات الضبط الإداري العالي</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="logs-section" class="panel-tab" style="display:none;">
+            <div class="glass-panel">
+                <div class="panel-heading"><i class="fa-solid fa-shield-virus"></i> الصندوق الأسود السحابي للأمن واختراقات اللوحة العليا ومحاولات الدخول برقم خطأ</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>طبيعة الحدث ونوع المخالفة أو الإجراء</th>
+                                <th>المسؤول / البريد المتورط</th>
+                                <th>توقيت العملية بدقة</th>
+                                <th>حالة استجابة النظام والحماية</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="vault-section" class="panel-tab" style="display:none;">
+            <div class="glass-panel" style="text-align: center;">
+                <div class="panel-heading" style="justify-content: center;"><i class="fa-solid fa-key"></i> مستودع وخزنة تشفير شفرات المرور الماستر</div>
+                <p style="color: var(--color-text-muted); margin-bottom: 25px;">هذه الغرفة مصممة لتمكين المشرفين العليين (كريم & عبقرينو) من كشف ومطابقة شفرات المرور من الفايربيز لحماية حساب الإدارة.</p>
+                <div id="masterPasswordDisplay" style="font-size: 28px; font-weight: 900; background: #fff; padding: 25px; border-radius: 12px; border: 2px dashed var(--color-gold); display: inline-block; min-width: 280px; letter-spacing: 2px; color: var(--color-burgundy); margin-bottom: 25px;">
+                    ••••••••••••••••
+                </div>
+                <div>
+                    <button class="btn-prime" onclick="revealMasterPassword()"><i class="fa-solid fa-eye"></i> كشف كلمة المرور السحرية للمنصة</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, getDoc, getDocs, updateDoc, setDoc, deleteDoc, collection, onSnapshot, query, orderBy, addDoc, serverTimestamp, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // إعدادات الاتصال السحابي الموحدة والمدونة بالملفات الرسمية لمنصة اتقِ الله
+        const firebaseConfig = {
+            apiKey: "AIzaSyBY0bN1N6ECNoJZqhJYoM3fx8y2VqPtv-o",
+            authDomain: "atqallah-e616c.firebaseapp.com",
+            projectId: "atqallah-e616c",
+            storageBucket: "atqallah-e616c.firebasestorage.app",
+            messagingSenderId: "1024323751672",
+            appId: "1:1024323751672:web:2d5f6f7b39bf28d7c4b50d"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // ─── حماية الصفحة: التحقق من صلاحية الجلسة ───
+        const email = localStorage.getItem('authenticatedUserEmail');
+        const timestamp = localStorage.getItem('sessionTimestamp');
+        const SESSION_DURATION_MS = 24 * 60 * 60 * 1000;
+        if (!email || !timestamp || (Date.now() - parseInt(timestamp, 10)) >= SESSION_DURATION_MS) {
+            localStorage.removeItem('authenticatedUserEmail');
+            localStorage.removeItem('sessionTimestamp');
+            alert('انتهت صلاحية جلستك الأمنية. يرجى تسجيل الدخول مرة أخرى.');
+            window.location.href = 'auth.html';
+        }
+
+        // تحديد الحصانة المطلقة لكريم وعبقرينو فقط لا غير
+        const masterAdmins = ["kareemguinness@gmail.com", "mostafa7pubg7@gmail.com"];
+        const currentCachedEmail = localStorage.getItem('authenticatedUserEmail');
+
+        let editingArticleId = null;
+        let editingCourseId = null;
+
+        // 1. بروتوكول فحص الصلاحيات الصارم عند الدخول للوحة
+        async function runAbsoluteSecurityCheck() {
+            if (!currentCachedEmail || !masterAdmins.includes(currentCachedEmail.trim())) {
+                // تدوين فوري لمحاولة قرصنة واختراق اللوحة العليا في السحابة
+                try {
+                    await addDoc(collection(db, "security_logs"), {
+                        event: "🚨 محاولة دخول مشبوهة وغير مصرحة لصفحة الأدمين العليا",
+                        user: currentCachedEmail || "مجهول / متسلل خارجي",
+                        timestamp: serverTimestamp(),
+                        status: "CRITICAL_ALERT"
+                    });
+                } catch(e) { console.log(e); }
+                
+                document.getElementById('lock-status-text').innerHTML = "<span style='color:#c62828;'>عذراً، لا تمتلك صلاحيات الإدارة العليا! تم حظر عبورك وجاري طردك...</span>";
+                alert("تنبيه أمني صارم: هذا النطاق محمي بالكامل ويخضع لإدارة كلاً من (كريم وعبقرينو). تم تسجيل بياناتك وطردك فوراً!");
+                window.location.href = "index.html";
+            } else {
+                // تم التأكيد بنجاح وتجاوز شاشة القفل
+                document.getElementById('absolute-lock-screen').style.display = 'none';
+                document.getElementById('currentAdminName').innerText = currentCachedEmail === "kareemguinness@gmail.com" ? "المهندس كريم عمر (أدمن أعلى)" : "المطور عبقرينو (أدمن أعلى)";
+                
+                // كتابة تدوين أمني بنجاح الدخول الآمن للمشرفين
+                logSecurityEvent("🔓 تم دخول لوحة القيادة العليا والتحكم السحابي بنجاح");
+                
+                // تشغيل المراقبين وبث البيانات المباشر
+                initHomepageSync();
+                listenToArticles();
+                listenToCourses();
+                listenToStudents();
+                listenToSecurityLogs();
+            }
+        }
+
+        // دالة تدوين العمليات بداخل السجل السحابي
+        async function logSecurityEvent(eventMessage, statusType = "SUCCESS") {
+            try {
+                await addDoc(collection(db, "security_logs"), {
+                    event: eventMessage,
+                    user: currentCachedEmail,
+                    timestamp: serverTimestamp(),
+                    status: statusType
+                });
+            } catch(e) { console.error(e); }
+        }
+
+        function showLoader() { document.getElementById('globalLoader').style.display = 'flex'; }
+        function hideLoader() { document.getElementById('globalLoader').style.display = 'none'; }
+
+
+        // 2. إدارة ومزامنة الصفحة الرئيسية ولوز الإجراء وشريط الأخبار لحظياً
+        function initHomepageSync() {
+            const configRef = doc(db, "settings", "homepage_config");
+            onSnapshot(configRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    const data = snapshot.data();
+                    document.getElementById('tickerText').value = data.tickerText || "";
+                    document.getElementById('heroBtnText').value = data.btnText || "";
+                    document.getElementById('heroBtnLink').value = data.btnLink || "";
+                    document.getElementById('isBtnVisible').value = String(data.isBtnVisible || "true");
+                }
+            });
+        }
+
+        window.saveHomepageConfig = async function() {
+            showLoader();
+            try {
+                const configRef = doc(db, "settings", "homepage_config");
+                await setDoc(configRef, {
+                    tickerText: document.getElementById('tickerText').value.trim(),
+                    btnText: document.getElementById('heroBtnText').value.trim(),
+                    btnLink: document.getElementById('heroBtnLink').value.trim(),
+                    isBtnVisible: document.getElementById('isBtnVisible').value === "true"
+                }, { merge: true });
+                
+                await logSecurityEvent("🔄 تحديث إعدادات شريط الأخبار والزر الإجرائي بالصفحة الرئيسية");
+                alert("🚀 تم التحديث والبث السحابي المباشر لكافة الطلاب بنجاح تامي!");
+            } catch(e) {
+                alert("حدث خطأ أثناء مزامنة إعدادات الرئيسية: " + e.message);
+            }
+            hideLoader();
+        }
+
+
+        // 3. مستودع المقالات والأخبار (نشر - تعديل - حذف كاملاً متكاملاً)
+        function listenToArticles() {
+            const q = query(collection(db, "articles"), orderBy("date", "desc"));
+            onSnapshot(q, (snapshot) => {
+                const tbody = document.getElementById('articlesTableBody');
+                tbody.innerHTML = "";
+                snapshot.forEach((docSnap) => {
+                    const art = docSnap.data();
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td><b>${art.title || 'بدون عنوان'}</b></td>
+                        <td><span class="badge badge-alert">${art.tag || 'عام'}</span></td>
+                        <td>${art.date || '---'}</td>
+                        <td>
+                            <button class="btn-edit" onclick="prepareEditArticle('${docSnap.id}')"><i class="fa-solid fa-user-pen"></i> تعديل</button>
+                            <button class="btn-danger" onclick="executeDeleteArticle('${docSnap.id}', '${art.title}')"><i class="fa-solid fa-trash-can"></i> حذف</button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            });
+        }
+
+        window.publishOrUpdateArticle = async function() {
+            const title = document.getElementById('articleTitle').value.trim();
+            const tag = document.getElementById('articleTag').value;
+            const img = document.getElementById('articleImg').value.trim() || "at.webp";
+            const summary = document.getElementById('articleSummary').value.trim();
+            const body = document.getElementById('articleBody').value.trim();
+
+            if(!title || !body) { alert("يرجى تعبئة الحقول الأساسية كالعنوان والمحتوى!"); return; }
+            showLoader();
+
+            try {
+                if (editingArticleId) {
+                    // تعديل مقال موجود بالفعل
+                    await updateDoc(doc(db, "articles", editingArticleId), {
+                        title, tag, img, summary, content: body
+                    });
+                    await logSecurityEvent(`📝 تعديل وتحديث المقال الأكاديمي: [ ${title} ]`);
+                    alert("تم تعديل وحفظ المقال بنجاح!");
+                } else {
+                    // نشر مقال جديد بالكامل
+                    const today = new Date();
+                    const dateString = today.toLocaleDateString('ar-EG', { year:'numeric', month:'long', day:'numeric' });
+                    
+                    await addDoc(collection(db, "articles"), {
+                        title, tag, img, summary, content: body, date: dateString, timestamp: serverTimestamp()
+                    });
+                    await logSecurityEvent(`🆕 نشر وصياغة مقال أكاديمي جديد للطلاب: [ ${title} ]`);
+                    alert("تم نشر المقال التعليمي الجديد فوراً بمركز الأخبار!");
+                }
+                resetArticleForm();
+            } catch(e) { alert("خطأ في معالجة المقال: " + e.message); }
+            hideLoader();
+        }
+
+        window.prepareEditArticle = async function(id) {
+            showLoader();
+            try {
+                const docSnap = await getDoc(doc(db, "articles", id));
+                if(docSnap.exists()) {
+                    const art = docSnap.data();
+                    editingArticleId = id;
+                    document.getElementById('articleTitle').value = art.title || "";
+                    document.getElementById('articleTag').value = art.tag || "all";
+                    document.getElementById('articleImg').value = art.img || "";
+                    document.getElementById('articleSummary').value = art.summary || "";
+                    document.getElementById('articleBody').value = art.content || "";
+                    
+                    document.getElementById('articleFormTitle').innerHTML = `<i class="fa-solid fa-user-pen" style="color:var(--color-gold)"></i> تعديل مستند المقال الحالي`;
+                    document.getElementById('btnSaveArticle').innerHTML = `<i class="fa-solid fa-circle-check"></i> حفظ التغييرات السحابية`;
+                    document.getElementById('btnCancelArticleEdit').style.display = "inline-block";
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            } catch(e) { console.log(e); }
+            hideLoader();
+        }
+
+        window.resetArticleForm = function() {
+            editingArticleId = null;
+            document.getElementById('articleTitle').value = "";
+            document.getElementById('articleImg').value = "";
+            document.getElementById('articleSummary').value = "";
+            document.getElementById('articleBody').value = "";
+            document.getElementById('articleFormTitle').innerHTML = `<i class="fa-solid fa-pen-nib"></i> صياغة ونشر مقال أكاديمي جديد`;
+            document.getElementById('btnSaveArticle').innerHTML = `<i class="fa-solid fa-paper-plane"></i> اعتماد المقال في قاعدة البيانات`;
+            document.getElementById('btnCancelArticleEdit').style.display = "none";
+        }
+
+        window.executeDeleteArticle = async function(id, title) {
+            if(confirm(`⚠️ تنبيه عالي الخطورة: هل أنت متأكد تماماً من حذف المقال [ ${title} ] نهائياً من القواعد السحابية؟`)) {
+                showLoader();
+                try {
+                    await deleteDoc(doc(db, "articles", id));
+                    await logSecurityEvent(`🗑️ حذف وإبادة المقال: [ ${title} ]`);
+                    alert("تم حذف وإزالة المقال بنجاح تام.");
+                } catch(e) { alert(e.message); }
+                hideLoader();
+            }
+        }
+
+
+        // 4. إدارة وحقن الكورسات والمراجعات (Library Section)
+        function listenToCourses() {
+            onSnapshot(collection(db, "library"), (snapshot) => {
+                const tbody = document.getElementById('libraryTableBody');
+                tbody.innerHTML = "";
+                snapshot.forEach((docSnap) => {
+                    const course = docSnap.data();
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td><b>${course.title || 'بدون عنوان'}</b></td>
+                        <td>${course.instructor || '---'}</td>
+                        <td><span class="badge badge-active">${course.tag || 'عام'}</span></td>
+                        <td><i class="fa-solid fa-heart" style="color:#e63946;"></i> ${course.likes || 0}</td>
+                        <td>
+                            <button class="btn-edit" onclick="prepareEditCourse('${docSnap.id}')"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn-danger" onclick="executeDeleteCourse('${docSnap.id}', '${course.title}')"><i class="fa-solid fa-trash-can"></i></button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            });
+        }
+
+        window.publishOrUpdateCourse = async function() {
+            const title = document.getElementById('courseTitle').value.trim();
+            const instructor = document.getElementById('courseInstructor').value.trim();
+            const tag = document.getElementById('courseTag').value;
+            const pdfUrl = document.getElementById('coursePdf').value.trim();
+            const videoUrl = document.getElementById('courseVideo').value.trim();
+
+            if(!title || !pdfUrl) { alert("العنوان ورابط الـ PDF حقول إلزامية لتثبيت الكورس والمحاضرة!"); return; }
+            showLoader();
+
+            try {
+                if (editingCourseId) {
+                    await updateDoc(doc(db, "library", editingCourseId), {
+                        title, instructor, tag, pdfUrl, videoUrl
+                    });
+                    await logSecurityEvent(`📚 تعديل بيانات الكورس التعليمي: [ ${title} ]`);
+                    alert("تم تحديث الكورس بالمكتبة السحابية بنجاح!");
+                } else {
+                    await addDoc(collection(db, "library"), {
+                        title, instructor, tag, pdfUrl, videoUrl, likes: 0, likedBy: []
+                    });
+                    await logSecurityEvent(`🆕 إضافة وحقن ملخص وكورس جديد بالمنصة: [ ${title} ]`);
+                    alert("تم إدراج وحقن الكورس التعليمي الجديد فوراً بمستودع المكتبة!");
+                }
+                resetCourseForm();
+            } catch(e) { alert(e.message); }
+            hideLoader();
+        }
+
+        window.prepareEditCourse = async function(id) {
+            showLoader();
+            try {
+                const snap = await getDoc(doc(db, "library", id));
+                if (snap.exists()) {
+                    const c = snap.data();
+                    editingCourseId = id;
+                    document.getElementById('courseTitle').value = c.title || "";
+                    document.getElementById('courseInstructor').value = c.instructor || "";
+                    document.getElementById('courseTag').value = c.tag || "";
+                    document.getElementById('coursePdf').value = c.pdfUrl || "";
+                    document.getElementById('courseVideo').value = c.videoUrl || "";
+
+                    document.getElementById('courseFormTitle').innerHTML = `<i class="fa-solid fa-sliders" style="color:var(--color-gold)"></i> تعديل مراجعة/كورس بالمنصة`;
+                    document.getElementById('btnSaveCourse').innerText = "تعديل وحفظ الكورس الأكاديمي";
+                    document.getElementById('btnCancelCourseEdit').style.display = "inline-block";
+                }
+            } catch(e) { console.log(e); }
+            hideLoader();
+        }
+
+        window.resetCourseForm = function() {
+            editingCourseId = null;
+            document.getElementById('courseTitle').value = "";
+            document.getElementById('courseInstructor').value = "";
+            document.getElementById('coursePdf').value = "";
+            document.getElementById('courseVideo').value = "";
+            document.getElementById('courseFormTitle').innerHTML = `<i class="fa-solid fa-folder-plus"></i> رفع وإدراج كورس أو ملخص أكاديمي`;
+            document.getElementById('btnSaveCourse').innerText = "حقن وتثبيت الكورس فوراً";
+            document.getElementById('btnCancelCourseEdit').style.display = "none";
+        }
+
+        window.executeDeleteCourse = async function(id, title) {
+            if(confirm(`⚠️ حذف كورس: هل تريد تدمير وحذف الكورس [ ${title} ] بالكامل؟`)) {
+                showLoader();
+                try {
+                    await deleteDoc(doc(db, "library", id));
+                    await logSecurityEvent(`🗑️ تدمير وحذف الكورس الأكاديمي: [ ${title} ]`);
+                    alert("تم إزالة وثيقة الكورس والمراجعة بنجاح.");
+                } catch(e) { alert(e.message); }
+                hideLoader();
+            }
+        }
+
+
+        // 5. جدار رصد حسابات الطلاب وحظرهم وتعديل نقاطهم ومراقبة ما يقومون بفعله
+        function listenToStudents() {
+            onSnapshot(collection(db, "users"), (snapshot) => {
+                const tbody = document.getElementById('studentsTableBody');
+                tbody.innerHTML = "";
+                snapshot.forEach((docSnap) => {
+                    const user = docSnap.data();
+                    const tr = document.createElement('tr');
+                    
+                    const isBlocked = user.isBlocked || false;
+                    const statusText = isBlocked ? '<span class="badge badge-blocked">⛔ محظور حالياً</span>' : '<span class="badge badge-active">✔ نشط وفعال</span>';
+                    const actionBtnText = isBlocked ? '<i class="fa-solid fa-user-check"></i> إلغاء الحظر الأمني' : '<i class="fa-solid fa-user-slash"></i> حظر الطالب فوراً';
+                    
+                    tr.innerHTML = `
+                        <td><b>${user.fullName || 'طالب مجهول النطاق'}</b></td>
+                        <td><code>${docSnap.id}</code></td>
+                        <td>
+                            <input type="number" value="${user.points || 0}" style="width:70px; padding:5px; text-align:center;" data-student-id="${docSnap.id}" id="pts-${docSnap.id.replace(/[^a-zA-Z0-9]/g, '_')}">
+                            <button class="btn-edit" style="padding:4px 8px;" onclick="updateStudentPoints('${docSnap.id}')">تحديث</button>
+                        </td>
+                        <td>${statusText}</td>
+                        <td>
+                            <button class="btn-danger" style="background:${isBlocked ? '#2e7d32':'#c62828'}" onclick="toggleStudentBlock('${docSnap.id}', ${isBlocked}, '${user.fullName}')">
+                                ${actionBtnText}
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            });
+        }
+
+        window.updateStudentPoints = async function(email) {
+            const input = document.querySelector(`input[data-student-id="${email}"]`);
+            if (!input) { alert("لم يتم العثور على حقل النقاط للطالب!"); return; }
+            const newPoints = parseInt(input.value) || 0;
+            showLoader();
+            try {
+                await updateDoc(doc(db, "users", email), { points: newPoints });
+                await logSecurityEvent(`💰 تعديل وتحديث النقاط اليدوية لحساب الطالب [ ${email} ] إلى [ ${newPoints} نقطة ]`);
+                alert("تم تحديث وتعديل محفظة الطالب الرقمية!");
+            } catch(e) { alert(e.message); }
+            hideLoader();
+        }
+
+        window.toggleStudentBlock = async function(email, currentStatus, fullName) {
+            const actionText = currentStatus ? "إلغاء حظر" : "حظر وإبعاد";
+            if (confirm(`هل أنت متأكد تماماً من رغبتك في إجراء [ ${actionText} ] للطالب: ${fullName || email}؟`)) {
+                showLoader();
+                try {
+                    await updateDoc(doc(db, "users", email), { isBlocked: !currentStatus });
+                    await logSecurityEvent(`🔒 تم [ ${actionText} ] لحساب المستخدم الموثق بالبريد: [ ${email} ]`, "SECURITY_ACTION");
+                    alert(`تم تنفيذ الإجراء وتعديل الحالة الأمنية بنجاح.`);
+                } catch(e) { alert(e.message); }
+                hideLoader();
+            }
+        }
+
+
+        // 6. مراقبة وسجلات الأمان الفورية ومحاولات الدخول برقم خاطئ
+        function listenToSecurityLogs() {
+            const q = query(collection(db, "security_logs"), orderBy("timestamp", "desc"));
+            onSnapshot(q, (snapshot) => {
+                const tbody = document.getElementById('logsTableBody');
+                tbody.innerHTML = "";
+                snapshot.forEach((docSnap) => {
+                    const log = docSnap.data();
+                    const tr = document.createElement('tr');
+                    
+                    const logDate = log.timestamp ? log.timestamp.toDate().toLocaleString('ar-EG') : "قيد المزامنة..";
+                    let rowStyle = "";
+                    if(log.status === "CRITICAL_ALERT" || log.status === "FAILED_LOGIN") {
+                        rowStyle = "background-color: rgba(198, 40, 40, 0.08); color: #c62828;";
+                    }
+                    
+                    tr.innerHTML = `
+                        <td style="${rowStyle}"><b>${log.event || 'إجراء مجهول'}</b></td>
+                        <td><code>${log.user || 'زائر غير معروف'}</code></td>
+                        <td><small>${logDate}</small></td>
+                        <td><span class="badge ${log.status === 'SUCCESS' ? 'badge-active' : 'badge-blocked'}">${log.status || 'INFO'}</span></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            });
+        }
+
+
+        // 7. استرجاع وكشف كلمة السر المخزنة للمشرفين من الفايربيز للتحقق
+        window.revealMasterPassword = async function() {
+            showLoader();
+            try {
+                // قراءة مستند كلمات المرور الماستر من الفايربيز لتوفير تحكم مطلق
+                const passSnap = await getDoc(doc(db, "settings", "admin_passwords"));
+                if (passSnap.exists()) {
+                    document.getElementById('masterPasswordDisplay').innerText = passSnap.data().masterKey || "لا يوجد ماستر كي معين حالياً!";
+                    await logSecurityEvent("🔑 كشف وإظهار كلمة المرور العليا السرية بلوحة التحكم");
+                } else {
+                    document.getElementById('masterPasswordDisplay').innerText = "admin123 (افتراضي)";
+                    alert("لم يتم العثور على مستند settings/admin_passwords، يرجى إنشائه بالفايرستور وحقن حقل masterKey بداخلة.");
+                }
+            } catch(e) { alert("خطأ في جلب بيانات الخزنة: " + e.message); }
+            hideLoader();
+        }
+
+
+        // لوجيك التنقل الاحترافي بين الأقسام والتبويبات السحابية دون تحميل
+        window.switchSection = function(sectionId, element) {
+            document.querySelectorAll('.panel-tab').forEach(section => section.style.display = 'none');
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            
+            document.getElementById(sectionId).style.display = 'block';
+            element.classList.add('active');
+            
+            // تحديث العناوين ديناميكياً
+            const titles = {
+                'dashboard-section': 'التحكم الفوري بالواجهة الرئيسية وبث الأخبار',
+                'articles-section': 'صياغة ونشر وتحرير المقالات الأكاديمية بالمنصة',
+                'library-section': 'إدارة وحقن بنك المراجعات والكورسات السحابية',
+                'students-section': 'رادار الضبط الإداري وحظر حسابات الطلاب ومراقبتهم',
+                'logs-section': 'جدار الرصد الأمني والصندوق الأسود للمحاولات المشبوهة والخطأ',
+                'vault-section': 'غرفة العمليات وخزنة كلمات السر العليا الفيدرالية'
+            };
+            document.getElementById('dynamicSectionTitle').innerText = titles[sectionId];
+        }
+
+        // تشغيل بروتوكول الأمان الصارم عند فتح الملف فورا
+        runAbsoluteSecurityCheck();
+
+    </script>
+
+    <script src="components.js"></script>
+</body>
+</html>

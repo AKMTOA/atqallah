@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة اتقِ الله التعليمية | البوصلة الذكية لنظام البكالوريا المصري 2026</title>
+    <meta name="description" content="المنصة الرائدة والأولى لطلاب دفعة البكالوريا المصرية الجديدة 2025/2026. ملخصات سحابية موثقة، تحليلات المسارات الأربعة، مركز أخبار فوري، وإرشاد أكاديمي متكامل.">
+    <meta name="keywords" content="اتق الله, منصة اتق الله, البكالوريا المصرية, نظام البكالوريا الجديد, ثانوية عامة 2026, ملخصات البكالوريا, العلوم المتكاملة, كريم عمر, مصطفى محمد, بنك الملخصات, مسار الطب, مسار الهندسة">
+    <meta name="author" content="كريم عمر & مصطفى محمد">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="منصة اتقِ الله التعليمية | نظام البكالوريا المصري">
+    <meta property="og:description" content="اكتشف أقوى مكتبة ملخصات سحابية وأحدث أخبار نظام البكالوريا التراكمي.">
+    <meta property="og:image" content="at.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="منصة اتقِ الله التعليمية">
+    <meta name="twitter:description" content="منصة تعليمية ذكية ومجانية تخدم طلاب الصف الأول والثاني الثانوي بمسارات البكالوريا المستحدثة.">
+    <meta name="twitter:image" content="at.webp">
+    <link rel="icon" type="image/webp" href="at.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ─── إزالة outline الأزرق المزعج على كل العناصر ─── */
+        * { outline: none !important; -webkit-tap-highlight-color: transparent !important; }
+        *:focus { outline: none !important; box-shadow: none !important; }
+
+        /* ─── إزالة outline الأزرق المزعج على كل العناصر ─── */
+        * { outline: none !important; -webkit-tap-highlight-color: transparent !important; }
+        *:focus { outline: none !important; box-shadow: none !important; }
+        a, button { -webkit-tap-highlight-color: transparent; }
+
+        /* ─── إنترو التحميل ─── */
+        #intro-overlay {
+            position: fixed; inset: 0; z-index: 99999;
+            background: linear-gradient(135deg, #832527 0%, #5A1C1C 100%);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 0.4s ease, visibility 0.4s;
+        }
+        #intro-overlay.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
+        .intro-logo {
+            width: 110px; height: 110px; border-radius: 50%; object-fit: cover;
+            border: 3px solid rgba(197, 160, 89, 0.5); padding: 5px;
+            background: rgba(255,255,255,0.08);
+            animation: introPulse 1.8s ease-in-out infinite;
+        }
+        .intro-title {
+            font-size: clamp(22px, 5vw, 30px); font-weight: 900; margin-top: 20px;
+            background: linear-gradient(45deg, #ffffff, #C5A059);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        @keyframes introPulse {
+            0%, 100% { transform: scale(1); opacity: 0.95; border-color: rgba(197, 160, 89, 0.3); }
+            50% { transform: scale(1.06); opacity: 1; border-color: rgba(197, 160, 89, 0.8); }
+        }
+
+        /* ─── شريط الأخبار ─── */
+        .ticker-wrap {
+            width: 100%; background: var(--primary); color: #fff;
+            overflow: hidden; height: 44px; display: flex; align-items: center;
+            font-size: 14px; font-weight: 600; box-shadow: 0 2px 12px rgba(131, 37, 39, 0.2);
+        }
+        .ticker-title {
+            background: #140506; padding: 0 18px; height: 100%;
+            display: flex; align-items: center; gap: 8px; font-weight: 900; font-size: 13px; flex-shrink: 0;
+        }
+        .ticker-text { display: inline-block; white-space: nowrap; padding-right: 100%; animation: ticker 30s linear infinite; }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+        /* ─── Hero Section ─── */
+        .hero-section {
+            position: relative; overflow: hidden;
+            background: linear-gradient(135deg, #1a0a0a 0%, #832527 50%, #5A1C1C 100%);
+            padding: 100px 20px 80px; min-height: 90vh; display: flex; align-items: center;
+        }
+        .hero-section::before {
+            content: ''; position: absolute; inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.06)"/><circle cx="80" cy="30" r="1.5" fill="rgba(255,255,255,0.04)"/><circle cx="50" cy="80" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="90" cy="70" r="1.2" fill="rgba(255,255,255,0.03)"/></svg>');
+            background-size: 200px; pointer-events: none; z-index: 0;
+        }
+
+        .hero-container {
+            max-width: 1200px; margin: 0 auto; width: 100%; display: flex;
+            align-items: center; justify-content: space-between; gap: 50px; position: relative; z-index: 1;
+        }
+
+        .hero-content { flex: 1; transform: translateY(30px); opacity: 0; animation: heroIn 0.8s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
+        .hero-content h1 {
+            font-size: clamp(32px, 5vw, 52px); font-weight: 900; color: #fff; line-height: 1.3; margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .hero-content h1 span { color: #C5A059; }
+        .hero-content p {
+            font-size: clamp(16px, 2vw, 18px); color: rgba(255,255,255,0.85); margin-bottom: 30px;
+            line-height: 1.8; max-width: 520px;
+        }
+        .hero-cta-group { display: flex; gap: 14px; flex-wrap: wrap; }
+        .hero-btn {
+            display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px;
+            border-radius: 50px; font-weight: 800; font-size: 1rem; text-decoration: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer; border: none;
+        }
+        .hero-btn-primary {
+            background: linear-gradient(135deg, #C5A059, #E6C88A); color: #5A1C1C;
+            box-shadow: 0 6px 25px rgba(197, 160, 89, 0.3);
+        }
+        .hero-btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.4); }
+        .hero-btn-outline {
+            background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+        }
+        .hero-btn-outline:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); }
+
+        .hero-visual { flex: 0 8; transform: scale(0.8); opacity: 0; animation: heroIn 0.8s 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
+        .hero-visual img {
+            width: min(320px, 70vw); height: min(320px, 70vw); border-radius: 50%; object-fit: cover;
+            border: 4px solid rgba(197, 160, 89, 0.4); padding: 6px; background: rgba(255,255,255,0.1);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3); animation: floatUpDown 5s ease-in-out infinite;
+        }
+        @keyframes floatUpDown { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        @keyframes heroIn { to { opacity: 1; transform: translateY(0) scale(1); } }
+
+        /* ─── Floating Stats Bar ─── */
+        .stats-bar {
+            display: flex; justify-content: center; gap: 0; margin: -40px auto 50px;
+            max-width: 900px; padding: 0 20px; position: relative; z-index: 2;
+        }
+        .stat-pill {
+            flex: 1; background: #fff; border-radius: 20px; padding: 24px 16px; text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid rgba(131,37,39,0.06);
+            transition: all 0.3s ease; position: relative; overflow: hidden;
+        }
+        .stat-pill:not(:last-child) { margin-left: -8px; }
+        .stat-pill:hover { transform: translateY(-5px); z-index: 1; box-shadow: 0 15px 40px rgba(0,0,0,0.12); }
+        .stat-pill::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, #832527, #C5A059); border-radius: 20px 20px 0 0;
+        }
+        .stat-pill h3 { font-size: 1.6rem; font-weight: 900; color: #832527; }
+        .stat-pill span { font-size: 0.8rem; color: #888; font-weight: 600; }
+
+        /* ─── Section Headline — إبداعي وراقٍ في المنتصف ─── */
+        .section-headline {
+            text-align: center; font-size: clamp(16px, 2.5vw, 22px); font-weight: 800; color: #832527;
+            margin: 40px auto 24px; position: relative; display: block; width: fit-content; max-width: 90%;
+            letter-spacing: 2px; text-transform: uppercase; padding: 8px 28px;
+            background: rgba(131, 37, 39, 0.04); border-radius: 50px; border: 1px solid rgba(131, 37, 39, 0.08);
+            box-shadow: 0 2px 10px rgba(131, 37, 39, 0.04);
+        }
+        .section-headline::before,
+        .section-headline::after {
+            content: '✦'; color: #C5A059; font-size: 0.7rem; position: absolute; top: 50%; transform: translateY(-50%); opacity: 0.6;
+        }
+        .section-headline::before { right: 10px; }
+        .section-headline::after { left: 10px; }
+        .section-headline i { color: #C5A059; margin-left: 6px; font-size: 0.8em; vertical-align: middle; }
+
+        /* ─── Features Grid — إبداعي وراقٍ ─── */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 14px; margin-bottom: 40px; }
+        .feature-card {
+            background: linear-gradient(145deg, #1a0f0f 0%, #2d1a1a 40%, #832527 100%);
+            border-radius: 20px; padding: 22px 16px 16px; text-align: center;
+            text-decoration: none; color: inherit; border: 1px solid rgba(197,160,89,0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15); transition: all 0.3s ease;
+            position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: space-between; min-height: 180px;
+        }
+        .feature-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, #C5A059, #E6C88A, #C5A059); opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        .feature-card:hover::before { opacity: 1; }
+        .feature-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 12px 35px rgba(131,37,39,0.25); border-color: rgba(197,160,89,0.3); }
+        .feature-card .icon-wrap {
+            width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(197,160,89,0.2);
+            display: flex; align-items: center; justify-content: center; margin-bottom: 12px; transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+        .feature-card:hover .icon-wrap { background: rgba(197,160,89,0.15); border-color: rgba(197,160,89,0.4); transform: scale(1.08); }
+        .feature-card .icon-wrap i { font-size: 1.1rem; color: #C5A059; transition: all 0.3s ease; }
+        .feature-card:hover .icon-wrap i { color: #fff; }
+        .feature-card h3 { font-size: 0.9rem; font-weight: 800; margin-bottom: 8px; color: #fff; letter-spacing: 0.5px; }
+        .feature-card p { font-size: 0.72rem; color: rgba(255,255,255,0.6); line-height: 1.5; margin-bottom: 14px; flex: 1; }
+        .feature-card .card-cta {
+            display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px;
+            border-radius: 50px; font-weight: 700; font-size: 0.75rem; color: #5A1C1C;
+            background: linear-gradient(135deg, #C5A059, #E6C88A); border: none; cursor: pointer;
+            transition: all 0.25s ease; text-decoration: none; margin-top: auto;
+            box-shadow: 0 4px 12px rgba(197,160,89,0.2);
+        }
+        .feature-card .card-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(197,160,89,0.35); }
+        .feature-card .card-cta i { font-size: 0.7rem; transition: transform 0.2s ease; }
+        .feature-card:hover .card-cta i { transform: translateX(-3px); }
+
+        /* ─── About Section ─── */
+        .about-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: 24px; margin-bottom: 60px; }
+        .about-card {
+            background: #fff; border-radius: 24px; padding: 30px; border: 1px solid rgba(131,37,39,0.06);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04); transition: all 0.3s ease;
+        }
+        .about-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.06); transform: translateY(-3px); }
+        .about-card h3 { color: #832527; font-weight: 800; margin-bottom: 15px; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+        .about-card h3 i { color: #C5A059; }
+        .about-card p { font-size: 0.9rem; color: #555; line-height: 1.8; text-align: justify; }
+
+        .designers-list { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+        .designer-item {
+            display: flex; align-items: center; gap: 14px; text-decoration: none; color: inherit;
+            padding: 12px; border-radius: 16px; border: 1px solid transparent; transition: all 0.3s ease;
+        }
+        .designer-item:hover { background: #fafafa; border-color: rgba(131,37,39,0.08); transform: translateX(-4px); }
+        .designer-avatar {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: linear-gradient(135deg, #832527, #C5A059); color: #fff;
+            display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+        }
+        .designer-info h4 { font-weight: 800; color: #832527; font-size: 0.95rem; }
+        .designer-info span { font-size: 0.8rem; color: #888; }
+
+        /* ─── Channels Bar ─── */
+        .channels-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin: 40px 0 60px; }
+        .channel-btn {
+            display: flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 50px;
+            text-decoration: none; color: #fff; font-weight: 700; font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: none; cursor: pointer;
+            min-width: 240px; justify-content: center;
+        }
+        .channel-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+        .whatsapp-ch { background: linear-gradient(135deg, #25D366, #128C7E); }
+        .telegram-ch { background: linear-gradient(135deg, #26A5E4, #1A8BC5); }
+
+        /* ─── Animations ─── */
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 900px) {
+            .hero-container { flex-direction: column; text-align: center; gap: 40px; padding-top: 40px; }
+            .hero-content p { margin: 0 auto 30px; }
+            .hero-cta-group { justify-content: center; }
+            .hero-visual img { width: 220px; height: 220px; }
+            .stats-bar { flex-wrap: wrap; margin-top: -20px; }
+            .stat-pill { min-width: 140px; }
+        }
+        @media (max-width: 600px) {
+            .hero-section { padding: 80px 16px 60px; }
+            .hero-btn { padding: 12px 24px; font-size: 0.9rem; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px; }
+            .feature-card { padding: 16px 10px 12px; border-radius: 16px; min-height: 150px; }
+            .feature-card .icon-wrap { width: 38px; height: 38px; }
+            .feature-card .icon-wrap i { font-size: 1rem; }
+            .feature-card h3 { font-size: 0.8rem; }
+            .feature-card p { font-size: 0.65rem; margin-bottom: 10px; }
+            .feature-card .card-cta { padding: 6px 14px; font-size: 0.7rem; }
+            .about-card { padding: 22px; }
+            .channel-btn { min-width: 100%; }
+            .stat-pill h3 { font-size: 1.3rem; }
+            .section-headline { font-size: 13px; padding: 6px 22px; letter-spacing: 1px; margin: 30px auto 20px; }
+            .section-headline::before, .section-headline::after { font-size: 0.6rem; }
+        }
+        @media (max-width: 400px) {
+            .features-grid { gap: 8px; }
+            .feature-card { padding: 14px 8px 10px; border-radius: 14px; }
+            .feature-card h3 { font-size: 0.75rem; }
+            .feature-card p { display: none; }
+            .feature-card .card-cta { padding: 5px 12px; font-size: 0.65rem; }
+            .section-headline { font-size: 12px; padding: 5px 18px; letter-spacing: 0.5px; }
+        }
+        .page-transition {
+            animation: pageIn 0.35s ease-out;
+        }
+        @keyframes pageIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="page-transition">
+
+    <div id="intro-overlay">
+        <img src="at.webp" alt="لوجو اتق الله" class="intro-logo" width="110" height="110">
+        <div class="intro-title">منصة اتقِ الله التعليمية</div>
+    </div>
+
+    <div class="ticker-wrap">
+        <div class="ticker-title"><i class="fa-solid fa-bullhorn"></i> آخر الأخبار</div>
+        <div class="ticker-text" id="dynamic-ticker-text">جاري مزامنة أحدث قرارات نظام البكالوريا التراكمي من السحابة الإلكترونية...</div>
+    </div>
+
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>مستقبلك في <span>البكالوريا الجديد</span><br>يبدأ برؤية واضحة وتنظيم ذكي</h1>
+                <p>أول منصة طلابية متكاملة ومجانية تهدف لتبسيط مناهج البكالوريا المستحدثة لدفعة 2026. نوفر لك ملخصات رقمية دقيقة، شروحات فورية، وتغطية رسمية لكافة القرارات الوزارية.</p>
+                <div class="hero-cta-group">
+                    <a href="#" id="dynamic-action-btn" class="hero-btn hero-btn-primary"><i class="fa-solid fa-rocket"></i> <span>استكشف المنصة</span></a>
+                    <a href="library.html" class="hero-btn hero-btn-outline"><i class="fa-solid fa-book-open"></i> <span>بنك الملخصات</span></a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="at.webp" alt="شعار المنصة" width="320" height="320">
+            </div>
+        </div>
+    </section>
+
+    <div class="stats-bar">
+        <div class="stat-pill"><h3>500+</h3><span>ملخص أكاديمي</span></div>
+        <div class="stat-pill"><h3>4</h3><span>مسارات البكالوريا</span></div>
+        <div class="stat-pill"><h3>10K+</h3><span>طالب مشترك</span></div>
+        <div class="stat-pill"><h3>24/7</h3><span>دعم فني متواصل</span></div>
+    </div>
+
+    <div class="main-wrapper">
+        <h2 class="section-headline"><i class="fa-solid fa-compass"></i> استكشف أقسام المنصة</h2>
+        <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+            <a href="hub.html" class="feature-card">
+                <div class="icon-wrap"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div>
+                    <h3>دليل الكليات والمسارات</h3>
+                    <p>البوصلة الشاملة للبكالوريا والثانوية والأزهر.</p>
+                </div>
+                <span class="card-cta"><i class="fa-solid fa-arrow-left"></i> دخول</span>
+            </a>
+            <a href="library.html" class="feature-card">
+                <div class="icon-wrap"><i class="fa-solid fa-book-open"></i></div>
+                <div>
+                    <h3>بنك الدروس والملخصات</h3>
+                    <p>ملخصات سحابية واختبارات قياس المستوى.</p>
+                </div>
+                <span class="card-cta"><i class="fa-solid fa-arrow-left"></i> دخول</span>
+            </a>
+            <a href="community.html" class="feature-card">
+                <div class="icon-wrap"><i class="fa-solid fa-users-bubble"></i></div>
+                <div>
+                    <h3>مجتمع الطلاب والشات</h3>
+                    <p>بوستات تفاعلية، تعليقات، وشات جماعي مشفر.</p>
+                </div>
+                <span class="card-cta"><i class="fa-solid fa-arrow-left"></i> دخول</span>
+            </a>
+            <a href="store.html" class="feature-card">
+                <div class="icon-wrap"><i class="fa-solid fa-gift"></i></div>
+                <div>
+                    <h3>متجر النقاط والهدايا</h3>
+                    <p>استبدل نقاطك بكروت شحن ومذكرات مجانية.</p>
+                </div>
+                <span class="card-cta"><i class="fa-solid fa-arrow-left"></i> دخول</span>
+            </a>
+            <a href="teachers.html" class="feature-card">
+                <div class="icon-wrap"><i class="fa-solid fa-chalkboard-user"></i></div>
+                <div>
+                    <h3>دليل المدرسين</h3>
+                    <p>نخبة المحاضرين والمعلمين المعتمدين.</p>
+                </div>
+                <span class="card-cta"><i class="fa-solid fa-arrow-left"></i> دخول</span>
+            </a>
+            <a href="about.html" class="feature-card">
+                <div class="icon-wrap"><i class="fa-solid fa-eye"></i></div>
+                <div>
+                    <h3>رؤيتنا والمبرمجين</h3>
+                    <p>فكرة المنصة وحسابات مهندسي البرمجيات.</p>
+                </div>
+                <span class="card-cta"><i class="fa-solid fa-arrow-left"></i> دخول</span>
+            </a>
+        </div>
+
+        <h2 class="section-headline"><i class="fa-solid fa-star"></i> عن منصة اتقِ الله</h2>
+        <div class="about-layout">
+            <div class="about-card">
+                <h3><i class="fa-solid fa-eye"></i> رؤيتنا التعليمية والمجتمعية</h3>
+                <p>تأسست منصة "اتقِ الله" بدافع وطني وطلابي خالص لمواكبة التطوير الشامل بنظام البكالوريا التراكمية، الثانوية العامة، والثانوية الأزهرية لدفعة 2026. المنصة مجانية بالكامل، وتتميز بخصوصية فائقة في غرف التواصل، ونظام تحفيز بالنقاط والهدايا الحقيقية.</p>
+            </div>
+            <div class="about-card">
+                <h3><i class="fa-solid fa-code-branch"></i> المطورون والمهندسون المنفذون</h3>
+                <p>تم تخطيط وهندسة وبناء المنصة بالكامل بجهود برمجة مشتركة من:</p>
+                <div class="designers-list">
+                    <a href="https://kemo-omar.github.io/Kareem/" target="_blank" class="designer-item">
+                        <div class="designer-avatar"><i class="fa-solid fa-user-gear"></i></div>
+                        <div class="designer-info"><h4>كريم عمر (Kareem Omar)</h4><span>المؤسس ومطور البنية السحابية والأنظمة (الموقع الشخصي)</span></div>
+                    </a>
+                    <a href="https://mostafa7html7-pixel.github.io/AbuTaleb/" target="_blank" class="designer-item">
+                        <div class="designer-avatar"><i class="fa-solid fa-laptop-code"></i></div>
+                        <div class="designer-info"><h4>مصطفى محمد عبقرينو (Mostafa Abutaleb)</h4><span>مهندس واجهات المستخدم والتجارب التفاعلية (الموقع الشخصي)</span></div>
+                    </a>
+                    <a href="https://akmtoa.github.io/akmtoa/" target="_blank" class="designer-item" style="background: rgba(197,160,89,0.1);">
+                        <div class="designer-avatar"><i class="fa-brands fa-github"></i></div>
+                        <div class="designer-info"><h4>المستودع البرمجي المشترك (AKMTOA)</h4><span>صفحة الفريق والمشاريع المفتوحة</span></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-headline"><i class="fa-solid fa-users"></i> القنوات الرسمية</h2>
+        <div class="channels-bar">
+            <a href="https://whatsapp.com/channel/0029Vb8RzDx7tkjAWwp5k911" target="_blank" class="channel-btn whatsapp-ch"><i class="fa-brands fa-whatsapp"></i> قناة الواتساب الرسمية</a>
+            <a href="https://t.me/atqallah_ch" target="_blank" class="channel-btn telegram-ch"><i class="fa-brands fa-telegram"></i> مجتمع التليجرام الموثق</a>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBY0bN1N6ECNoJZqhJYoM3fx8y2VqPtv-o",
+            authDomain: "atqallah-e616c.firebaseapp.com",
+            projectId: "atqallah-e616c",
+            storageBucket: "atqallah-e616c.firebasestorage.app",
+            messagingSenderId: "1024323751672",
+            appId: "1:1024323751672:web:2d5f6f7b39bf28d7c4b50d"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        window.addEventListener('load', () => {
+            const intro = document.getElementById('intro-overlay');
+            if (intro) { intro.style.opacity = '0'; setTimeout(() => { intro.style.display = 'none'; }, 400); }
+        });
+
+        if (window.syncNavAuthState) { window.syncNavAuthState(db); }
+
+        function listenToSystemControls() {
+            const configRef = doc(db, "settings", "homepage_config");
+            onSnapshot(configRef, (snapshot) => {
+                if (!snapshot.exists()) return;
+                const data = snapshot.data();
+                const ticker = document.getElementById('dynamic-ticker-text');
+                if (ticker) ticker.innerText = data.tickerText || "مرحباً بكم في منصة اتقِ الله التعليمية لعام 2026";
+                const btn = document.getElementById('dynamic-action-btn');
+                if (btn) { btn.innerText = data.btnText || "استكشف المنصة"; btn.href = data.btnLink || "library.html"; }
+            }, (err) => console.error("Firebase Listener Error:", err));
+        }
+        listenToSystemControls();
+    </script>
+    <script src="components.js"></script>
+</body>
+</html>

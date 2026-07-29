@@ -1,0 +1,6 @@
+{
+  "name": "منصة اتقِ الله التعليمية",
+  "description": "المنصة التعليمية الأولى لطلاب البكالوريا المصرية - ملخصات سحابية وإرشاد أكاديمي متكامل.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

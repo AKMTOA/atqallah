@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رؤيتنا والمبرمجين | منصة اتقِ الله التعليمية</title>
+    <meta name="description" content="فكرة ورؤية منصة اتقِ الله التعليمية، وفريق التطوير والبرمجة (كريم عمر ومصطفى محمد).">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, rgba(139,46,46,0.95), rgba(74,21,21,0.98)), url('6.png') center/cover;
+            color: #fff;
+            padding: 50px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 35px;
+            box-shadow: var(--shadow-xl);
+        }
+        .about-hero h1 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: var(--color-gold-light);
+            font-family: 'Amiri', serif;
+            margin-bottom: 12px;
+        }
+        .about-hero p {
+            max-width: 750px;
+            margin: 0 auto;
+            opacity: 0.92;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .vision-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 35px;
+            box-shadow: var(--shadow-sm);
+        }
+        .vision-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-burgundy);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Amiri', serif;
+        }
+        .vision-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--color-text);
+        }
+
+        .devs-section-title {
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--color-text);
+            margin-bottom: 25px;
+            font-family: 'Amiri', serif;
+        }
+
+        .devs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .dev-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 18px;
+            padding: 28px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .dev-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-gold);
+        }
+        .dev-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--color-gold);
+            object-fit: cover;
+            margin-bottom: 15px;
+            background: #fff;
+        }
+        .dev-name {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--color-text);
+            margin-bottom: 6px;
+        }
+        .dev-role {
+            color: var(--color-burgundy);
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 14px;
+        }
+        .dev-bio {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .btn-dev-portfolio {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(135deg, var(--color-burgundy), var(--color-burgundy-dark));
+            color: #fff;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-dev-portfolio:hover {
+            box-shadow: 0 4px 15px rgba(139,46,46,0.3);
+        }
+
+        .joint-github-card {
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            border-radius: 18px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .joint-github-card h3 {
+            color: var(--color-gold-light);
+            margin-bottom: 10px;
+        }
+        .joint-github-card p {
+            opacity: 0.9;
+            margin-bottom: 18px;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container" style="margin-top: 30px;">
+        <div class="about-hero">
+            <h1><i class="fa-solid fa-kaaba"></i> رؤية منصة اتقِ الله التعليمية</h1>
+            <p>أول مبادرة تعليمية ومجتمعية رقمية مجانية ومفتوحة تهدف لتوفير بوصلة ذكية وحاضنة سحابية متكاملة لجميع طلاب البكالوريا المصرية، الثانوية العامة، والأزهر الشريف.</p>
+        </div>
+
+        <div class="vision-card">
+            <h2 class="vision-title"><i class="fa-solid fa-eye"></i> الفكرة والغاية الإيمانية والأكاديمية</h2>
+            <p class="vision-text">
+                تأسست منصة <strong>اتقِ الله</strong> انطلاقاً من قوله تعالى: <em>﴿وَاتَّقُوا اللَّهَ وَيُعَلِّمُكُمُ اللَّهُ﴾</em>، لتكون ملاذ الطالب المصري طوال العام الدراسي. تم تجهيز المنصة بنظام رقمي متطور يجمع بين بنك ملخصات الدروس، ومجتمع تفاعلي محمي الخصوصية، ونظام نقاط تحفيزي يمنح الجوائز، ودليل تفاعلي لمسارات الكليات المستحدثة بنظام البكالوريا 2026.
+            </p>
+        </div>
+
+        <h2 class="devs-section-title"><i class="fa-solid fa-code"></i> المطورون والمهندسون المنفذون للمشروع</h2>
+
+        <div class="devs-grid">
+            <div class="dev-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="dev-avatar" alt="كريم عمر">
+                <h3 class="dev-name">كريم عمر (Kareem Omar)</h3>
+                <div class="dev-role">مؤسس ومطور المنصة الرئيسية</div>
+                <p class="dev-bio">مطور برمجيات وأنظمة سحابية متخصص في بناء المنصات التعليمية وتصميم تجربة المستخدم البصرية والأنظمة التفاعلية.</p>
+                <a href="https://kemo-omar.github.io/Kareem/" target="_blank" class="btn-dev-portfolio">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> زيارة الموقع الشخصي (Kareem)
+                </a>
+            </div>
+
+            <div class="dev-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="dev-avatar" alt="مصطفى محمد عبقرينو">
+                <h3 class="dev-name">مصطفى محمد (Mostafa Abutaleb)</h3>
+                <div class="dev-role">مطور واجهات المستخدم والأنظمة التفاعلية</div>
+                <p class="dev-bio">مطور واجهات ومصمم تجارب تفاعلية متخصص في تقنيات ويب المتقدمة وحلول الأداء والدعم البرمجي السريع.</p>
+                <a href="https://mostafa7html7-pixel.github.io/AbuTaleb/" target="_blank" class="btn-dev-portfolio">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> زيارة الموقع الشخصي (AbuTaleb)
+                </a>
+            </div>
+        </div>
+
+        <div class="joint-github-card">
+            <h3><i class="fa-brands fa-github"></i> المستودع والأعمال البرمجية المشتركة (AKMTOA)</h3>
+            <p>يمكنكم متابعة جميع المشاريع البرمجية المفتوحة والمستودعات الرقمية المخصصة للمنصة عبر الرابط الموحد.</p>
+            <a href="https://akmtoa.github.io/akmtoa/" target="_blank" class="btn-dev-portfolio" style="background:var(--color-gold); color:#1f2937;">
+                <i class="fa-solid fa-globe"></i> زيارة صفحة الفريق البرمجي (AKMTOA)
+            </a>
+        </div>
+    </main>
+
+    <script type="module" src="firebase-config.js"></script>
+    <script src="components.js"></script>
+</body>
+</html>

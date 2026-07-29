@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مركز الأخبار والمقالات المتقدمة | منصة اتقِ الله</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* التوافق الكامل مع سمة الفخامة الملكية للمنصة (Premium Luxury Theme) */
+        :root {
+            --color-bg: #F5F1E6; /* الخلفية العاجية الفاخرة */
+            --color-card-bg: rgba(255, 255, 255, 0.9);
+            --color-burgundy: #8B2E2E; /* البرجندي الملكي */
+            --color-burgundy-dark: #5A1C1C;
+            --color-gold: #C5A059; /* الذهبي النقي */
+            --color-text-main: #2D2522;
+            --color-text-muted: #7A706C;
+            --glass-border: rgba(139, 46, 46, 0.12);
+            --glass-shadow: 0 12px 40px 0 rgba(139, 46, 46, 0.04);
+            --verified-color: #1DA1F2;
+            --radius-main: 24px;
+            --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+ 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background: var(--color-bg);
+            background-image: radial-gradient(at 0% 0%, rgba(197, 160, 89, 0.04) 0px, transparent 50%),
+                              radial-gradient(at 100% 100%, rgba(139, 46, 46, 0.03) 0px, transparent 50%);
+            color: var(--color-text-main);
+            padding-top: 100px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .glass-panel {
+            background: var(--color-card-bg);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-main);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .nav-avatar { width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--color-gold); object-fit: cover; }
+
+        /* --- الحاوية الرئيسية والمحتوى --- */
+        .news-container {
+            max-width: 950px;
+            margin: 20px auto;
+            padding: 0 24px;
+            flex: 1;
+            width: 100%;
+        }
+
+        .news-header { text-align: center; margin-bottom: 40px; }
+        .news-header h1 { color: var(--color-burgundy); font-size: 34px; font-weight: 900; margin-bottom: 10px; }
+        .news-header p { font-size: 16px; color: var(--color-text-muted); font-weight: 500; }
+
+        /* شريط التصفية */
+        .filter-nav {
+            display: flex; gap: 12px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 35px;
+            border-bottom: 1px solid var(--glass-border); scrollbar-width: none;
+        }
+        .filter-nav::-webkit-scrollbar { display: none; }
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.6); border: 1px solid var(--glass-border);
+            padding: 10px 22px; border-radius: 50px; cursor: pointer; font-weight: 700;
+            color: var(--color-text-main); white-space: nowrap; transition: var(--transition-smooth); font-size: 14px;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--color-burgundy); color: #fff; border-color: var(--color-burgundy);
+            box-shadow: 0 4px 12px rgba(139, 46, 46, 0.15);
+        }
+
+        /* --- كارت المقال السحابي المطور --- */
+        .news-feed { display: flex; flex-direction: column; gap: 35px; }
+        .news-card {
+            padding: 30px; position: relative; transition: var(--transition-smooth);
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            border: 1px solid rgba(139, 46, 46, 0.08);
+        }
+        .news-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(197, 160, 89, 0.4);
+            box-shadow: 0 20px 45px rgba(139, 46, 46, 0.06);
+        }
+
+        .card-top-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .news-tag {
+            display: inline-block; background: rgba(139, 46, 46, 0.06); color: var(--color-burgundy);
+            padding: 6px 16px; border-radius: 50px; font-size: 12.5px; font-weight: 800; border: 1px solid rgba(139, 46, 46, 0.05);
+        }
+        
+        /* مؤشر مكافأة القراءة */
+        .read-status-badge {
+            font-size: 12px; font-weight: 700; color: var(--color-text-muted);
+            display: flex; align-items: center; gap: 6px; background: rgba(0,0,0,0.03); padding: 4px 12px; border-radius: 20px;
+        }
+        .read-status-badge.claimed {
+            color: #2e7d32; background: rgba(46, 125, 50, 0.08);
+        }
+
+        .news-title { font-size: 24px; font-weight: 900; color: var(--color-burgundy); margin-bottom: 6px; line-height: 1.4; }
+        .news-subtitle { font-size: 16px; font-weight: 700; color: var(--color-gold); margin-bottom: 16px; line-height: 1.5; }
+        
+        /* صورة المقال المضافة */
+        .news-image-wrapper { width: 100%; margin-bottom: 20px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.05); }
+        .news-image { width: 100%; max-height: 400px; object-fit: cover; display: block; transition: transform 0.5s; }
+        .news-card:hover .news-image { transform: scale(1.02); }
+
+        .news-content {
+            color: #3A3230; font-size: 15.5px; text-align: justify; margin-bottom: 24px;
+            line-height: 1.8; white-space: pre-line; font-weight: 500;
+        }
+
+        /* زر بنك الملخصات/الروابط الديناميكي */
+        .dynamic-action-link {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: linear-gradient(135deg, var(--color-gold) 0%, #A88444 100%);
+            color: #fff !important; text-decoration: none; padding: 12px 28px;
+            border-radius: 50px; font-weight: 700; font-size: 14.5px; margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.25); transition: var(--transition-smooth);
+        }
+        .dynamic-action-link:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4); }
+
+        /* هندسة التوثيق السفلي والميتا داتا */
+        .news-meta {
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 1px solid rgba(139, 46, 46, 0.08); padding-top: 18px;
+            font-size: 13px; color: var(--color-text-muted); flex-wrap: wrap; gap: 15px; margin-bottom: 20px;
+        }
+        .author-box { display: flex; align-items: center; gap: 6px; font-weight: 700; color: var(--color-text-main); }
+        .author-box i { color: var(--color-burgundy); }
+        .verified-badge { color: var(--verified-color); font-size: 14px; margin-right: 4px; }
+        .date-box { display: flex; align-items: center; gap: 6px; font-weight: 600; }
+
+        /* --- لوحة التفاعل الاجتماعي (لايك ودسلايك) --- */
+        .interaction-bar {
+            display: flex; gap: 15px; border-top: 1px dashed var(--glass-border); padding-top: 15px; margin-bottom: 20px;
+        }
+        .interact-btn {
+            background: rgba(255, 255, 255, 0.6); border: 1px solid var(--glass-border);
+            padding: 8px 20px; border-radius: 50px; cursor: pointer; display: flex; align-items: center; gap: 8px;
+            font-size: 13.5px; font-weight: 700; color: var(--color-text-main); transition: var(--transition-smooth);
+        }
+        .interact-btn:hover { background: rgba(139, 46, 46, 0.05); }
+        .interact-btn.liked { background: rgba(46, 125, 50, 0.1); border-color: #2e7d32; color: #2e7d32; }
+        .interact-btn.disliked { background: rgba(198, 40, 40, 0.1); border-color: #c62828; color: #c62828; }
+        .interact-btn.comment-toggle-btn { background: rgba(197, 160, 89, 0.08); border-color: rgba(197, 160, 89, 0.3); color: #856423; }
+
+        /* --- صندوق التعليقات السحابي المتقدم --- */
+        .comments-section {
+            background: rgba(139, 46, 46, 0.02); border: 1px solid rgba(139, 46, 46, 0.06);
+            border-radius: 16px; padding: 20px; display: none; margin-top: 15px;
+            animation: fadeIn 0.4s ease;
+        }
+        .comments-section.open { display: block; }
+        .comments-list { display: flex; flex-direction: column; gap: 15px; max-height: 300px; overflow-y: auto; margin-bottom: 20px; padding-left: 5px; }
+        
+        /* سكرول بار مخصص لقائمة التعليقات */
+        .comments-list::-webkit-scrollbar { width: 5px; }
+        .comments-list::-webkit-scrollbar-thumb { background: var(--color-gold); border-radius: 10px; }
+
+        .comment-node {
+            display: flex; gap: 12px; background: #fff; padding: 12px 16px; border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.03); box-shadow: 0 2px 8px rgba(0,0,0,0.01);
+        }
+        .comment-avatar { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--color-gold); }
+        .comment-body { flex: 1; }
+        .comment-user-meta { display: flex; justify-content: space-between; margin-bottom: 4px; }
+        .comment-user-name { font-size: 13px; font-weight: 800; color: var(--color-burgundy); }
+        .comment-date { font-size: 11px; color: var(--color-text-muted); }
+        .comment-text { font-size: 13.5px; color: var(--color-text-main); line-height: 1.5; font-weight: 500; }
+
+        .comment-form { display: flex; gap: 10px; margin-top: 15px; }
+        .comment-input {
+            flex: 1; background: #fff; border: 1px solid var(--glass-border); padding: 12px 18px;
+            border-radius: 50px; font-size: 13.5px; font-weight: 600; color: var(--color-text-main); outline: none;
+            transition: var(--transition-smooth);
+        }
+        .comment-input:focus { border-color: var(--color-burgundy); box-shadow: 0 0 0 3px rgba(139, 46, 46, 0.08); }
+        .comment-submit-btn {
+            background: var(--color-burgundy); color: #fff; border: none; padding: 0 22px;
+            border-radius: 50px; font-weight: 700; cursor: pointer; font-size: 13.5px; transition: var(--transition-smooth);
+        }
+        .comment-submit-btn:hover { background: var(--color-burgundy-dark); }
+
+        /* الأنيكيشنز */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        footer {
+            background: #1A0F0D; color: rgba(255, 255, 255, 0.55); padding: 35px 24px;
+            text-align: center; border-top: 4px solid var(--color-gold); margin-top: auto;
+            font-size: 14px; font-weight: 700;
+        }
+
+        /* الاستجابة للهواتف الذكية */
+        @media (max-width: 992px) {
+            .news-header h1 { font-size: 26px; }
+            .news-card { padding: 20px; border-radius: 18px; }
+            .news-title { font-size: 19px; }
+            .news-subtitle { font-size: 14px; }
+            .news-content { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ticker-wrap">
+
+    <div class="news-container">
+        <div class="news-header">
+            <h1>غرفة الأخبار والمقالات الموثقة</h1>
+            <p>متابعة حية وتحليلات سحابية مدعومة بنظام مكافآت اتقِ الله الرقمي</p>
+        </div>
+
+        <div class="filter-nav">
+            <button class="filter-btn active" onclick="filterNews('all', event)">جميع المقالات</button>
+            <button class="filter-btn" onclick="filterNews('قرارات وزارية', event)">قرارات وزارية</button>
+            <button class="filter-btn" onclick="filterNews('نصائح دراسية', event)">نصائح دراسية</button>
+            <button class="filter-btn" onclick="filterNews('شروحات', event)">شروحات ومواد</button>
+        </div>
+
+        <div class="news-feed" id="newsFeed">
+            <div style="text-align: center; color: var(--color-burgundy); font-weight: bold; padding: 40px 0;">
+                <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 30px; margin-bottom: 10px;"></i>
+                <p>جاري تحميل المقالات والمزامنة الأمنية النقاط...</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { auth, db } from './firebase-config.js';
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { collection, query, where, onSnapshot, doc, getDoc, updateDoc, arrayUnion, arrayRemove, addDoc, serverTimestamp, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // أسماء الحسابات الإدارية لتوثيق مقالاتهم تلقائياً بشارة زرقاء
+        const verifiedAuthors = ["كريم عمر", "عبقرينو", "Mostafa Mohamed", "Kareem Omar"];
+        
+        let currentUser = null;
+        let userDataCache = null;
+        let trackingReadArticles = new Set(); // لتجنب تكرار احتساب نقاط القراءة في نفس الجلسة تزامناً مع الأون سناب شوت
+        const commentListeners = new Map(); // تخزين unsubscribe functions لتعليقات المقالات
+
+        // --- تهيئة الهيدر الذكي والتنقل ---
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        }, { passive: true });
+
+        const menuBtn = document.getElementById('menu-toggle-btn');
+        const navBlock = document.getElementById('nav-menu-block');
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('open');
+            navBlock.classList.toggle('mobile-open');
+        });
+
+        // المراقبة الحية للمصادقة وجلب بيانات المستخدم والمزامنة النقاط
+        onAuthStateChanged(auth, async (user) => {
+            const authTrigger = document.getElementById('nav-auth-trigger');
+            const profileBlock = document.getElementById('nav-profile-block');
+            
+            if (user) {
+                currentUser = user;
+                if(authTrigger) authTrigger.style.setProperty('display', 'none', 'important');
+                if(profileBlock) profileBlock.style.setProperty('display', 'flex', 'important');
+                
+                try {
+                    const userDoc = await getDoc(doc(db, "users", user.uid));
+                    if (userDoc.exists()) {
+                        userDataCache = userDoc.data();
+                        if (userDataCache.status === 'blocked') { window.location.href = "block.html"; return; }
+                        
+                        document.getElementById('nav-user-name').innerText = (userDataCache.fullName || "طالب").split(' ')[0];
+                        let avatar = userDataCache.avatarId || "1.webp";
+                        if(!avatar.includes('.')) avatar += ".webp";
+                        document.getElementById('nav-user-avatar').src = avatar;
+                    }
+                } catch (e) { console.error("Error fetching user session metadata:", e); }
+            } else {
+                currentUser = null;
+                userDataCache = null;
+                if(authTrigger) authTrigger.style.setProperty('display', 'inline-block', 'important');
+                if(profileBlock) profileBlock.style.setProperty('display', 'none', 'important');
+            }
+            // إعادة بناء الخلاصة لعرض حالات التفاعل الفردية (لايك/ديسلايك) للمستخدم الحالي
+            listenToApprovedNews();
+        });
+
+        // --- جلب وعرض المقالات والمقاطع بشكل حي متطور من فايرستور ---
+        function listenToApprovedNews() {
+            const feedContainer = document.getElementById('newsFeed');
+            const q = query(collection(db, "articles"), where("status", "==", "approved"));
+            
+            onSnapshot(q, (querySnapshot) => {
+                feedContainer.innerHTML = ""; 
+                
+                const articles = [];
+                querySnapshot.forEach(doc => articles.push({ id: doc.id, ...doc.data() }));
+                // ترتيب المقالات زمنياً من الأحدث للأقدم يدوياً لتفادي الحاجة لعمل composite index يدوي
+                articles.sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0));
+
+                if(articles.length === 0) {
+                    feedContainer.innerHTML = `<p style="text-align:center; font-weight:700; color:var(--color-text-muted); padding:30px;">لا توجد مقالات معتمدة منشورة حالياً بمركز الأخبار.</p>`;
+                    return;
+                }
+
+                articles.forEach((data) => {
+                    const tag = data.tag || 'عام';
+                    const card = document.createElement('div');
+                    card.className = "news-card glass-panel";
+                    card.setAttribute('data-tag', tag);
+                    
+                    // التحقق من حالة شارة التوثيق لكاتب المقال الإداري
+                    const isVerified = verifiedAuthors.includes(data.author);
+                    const badgeHtml = isVerified ? '<i class="fa-solid fa-circle-check verified-badge" title="حساب إدارة موثق"></i>' : '';
+
+                    // حقل العنوان الفرعي الاختياري
+                    const subtitleHtml = data.subtitle ? `<h3 class="news-subtitle">${data.subtitle}</h3>` : '';
+
+                    // حقل رابط الصورة الاختياري للمقال
+                    const imageHtml = data.imageUrl ? `
+                        <div class="news-image-wrapper">
+                            <img src="${data.imageUrl}" class="news-image" alt="${data.title}" loading="lazy">
+                        </div>
+                    ` : '';
+
+                    // حقل زر الإجراء المخصص واللينك الموجه الاختياري (مثال: بنك الملخصات)
+                    const actionBtnHtml = (data.btnText && data.btnUrl) ? `
+                        <div>
+                            <a href="${data.btnUrl}" class="dynamic-action-link" target="_blank">
+                                <i class="fa-solid fa-layer-group"></i> ${data.btnText}
+                            </a>
+                        </div>
+                    ` : '';
+
+                    // معالجة عدادات الإعجاب والرفض وقوائم المعرفات UID
+                    const likedByArray = data.likedBy || [];
+                    const dislikedByArray = data.dislikedBy || [];
+                    const hasLiked = currentUser && likedByArray.includes(currentUser.uid);
+                    const hasDisliked = currentUser && dislikedByArray.includes(currentUser.uid);
+
+                    // فحص حالة مكافأة القراءة للمستخدم الحالي
+                    const readByArray = data.readBy || [];
+                    const hasRead = currentUser && readByArray.includes(currentUser.uid);
+                    const readBadgeText = hasRead ? '<i class="fa-solid fa-circle-check"></i> تمت القراءة (+10 نقاط)' : '<i class="fa-solid fa-clock"></i> جاري القراءة...';
+                    const readBadgeClass = hasRead ? 'read-status-badge claimed' : 'read-status-badge';
+
+                    card.innerHTML = `
+                        <div class="card-top-meta">
+                            <span class="news-tag">${tag}</span>
+                            <span class="${readBadgeClass}" id="readBadge-${data.id}">${readBadgeText}</span>
+                        </div>
+                        <h2 class="news-title">${data.title}</h2>
+                        ${subtitleHtml}
+                        ${imageHtml}
+                        <p class="news-content">${data.content}</p>
+                        ${actionBtnHtml}
+                        
+                        <div class="news-meta">
+                            <div class="author-box">
+                                <i class="fa-solid fa-user-pen"></i> كاتب المقال: 
+                                <span class="author-name">${data.author || 'طالب منصة'} ${badgeHtml}</span>
+                            </div>
+                            <div class="date-box">
+                                <i class="fa-solid fa-calendar-day"></i> ${data.date || 'مايو 2026'}
+                            </div>
+                        </div>
+
+                        <div class="interaction-bar">
+                            <button class="interact-btn ${hasLiked ? 'liked' : ''}" onclick="window.toggleLikeArticle('${data.id}', ${hasLiked})">
+                                <i class="${hasLiked ? 'fa-solid' : 'fa-regular'} fa-thumbs-up"></i>
+                                <span>${likedByArray.length} إعجاب</span>
+                            </button>
+                            <button class="interact-btn ${hasDisliked ? 'disliked' : ''}" onclick="window.toggleDislikeArticle('${data.id}', ${hasDisliked})">
+                                <i class="${hasDisliked ? 'fa-solid' : 'fa-regular'} fa-thumbs-down"></i>
+                                <span>${dislikedByArray.length}</span>
+                            </button>
+                            <button class="interact-btn comment-toggle-btn" onclick="window.toggleCommentsDrawer('${data.id}')">
+                                <i class="fa-regular fa-comment-dots"></i>
+                                <span>التعليقات</span>
+                            </button>
+                        </div>
+
+                        <div class="comments-section" id="commentsDrawer-${data.id}">
+                            <div class="comments-list" id="commentsList-${data.id}">
+                                <p style="font-size:12px; color:var(--color-text-muted);">جاري استدعاء غرف النقاش المباشرة...</p>
+                            </div>
+                            <div class="comment-form">
+                                <input type="text" class="comment-input" id="commentInput-${data.id}" placeholder="اكتب تعليقك الأكاديمي الراقي هنا...">
+                                <button class="comment-submit-btn" onclick="window.postNewComment('${data.id}')">إرسال</button>
+                            </div>
+                        </div>
+                    `;
+
+                    feedContainer.appendChild(card);
+
+                    // تشغيل موقت ذكي لاحتساب نقاط قراءة المقال تلقائياً بعد بقاء الكارت 5 ثوانٍ
+                    if(currentUser && !hasRead && !trackingReadArticles.has(data.id)) {
+                        trackingReadArticles.add(data.id);
+                        setTimeout(() => {
+                            triggerArticleReadReward(data.id);
+                        }, 5000);
+                    }
+                });
+            }, (err) => console.error("Firestore Core News Live Sync Error:", err));
+        }
+
+        // --- لوجيك نظام المكافآت والنقاط السحابي المتكامل ---
+
+        async function triggerArticleReadReward(articleId) {
+            if(!currentUser) return;
+            const userId = currentUser.email || currentUser.uid;
+            try {
+                const articleRef = doc(db, "articles", articleId);
+                const snap = await getDoc(articleRef);
+                if(!snap.exists()) return;
+                const currentReadBy = snap.data().readBy || [];
+                if(currentReadBy.includes(userId)) return;
+                await updateDoc(articleRef, { readBy: arrayUnion(userId) });
+                await updateDoc(doc(db, "users", userId), { points: increment(10) });
+            } catch (error) {
+                // console.error("Read reward error:", error);
+            }
+        }
+
+        // 2. نظام التفاعل بالإعجاب — مع Debounce
+        window.toggleLikeArticle = debounce(async function(articleId, alreadyLiked) {
+            if(!currentUser) { alert("يرجى تسجيل الدخول أولاً!"); return; }
+            const userId = currentUser.email || currentUser.uid;
+            try {
+                const articleRef = doc(db, "articles", articleId);
+                const userRef = doc(db, "users", userId);
+                const articleSnap = await getDoc(articleRef);
+                const articleData = articleSnap.data();
+
+                if(alreadyLiked) {
+                    await updateDoc(articleRef, { likedBy: arrayRemove(userId) });
+                    await updateDoc(userRef, { points: increment(-5) });
+                    if(articleData.authorUid) {
+                        const authorRef = doc(db, "users", articleData.authorUid);
+                        await updateDoc(authorRef, { points: increment(-10) }).catch(()=>null);
+                    }
+                } else {
+                    await updateDoc(articleRef, { likedBy: arrayUnion(userId), dislikedBy: arrayRemove(userId) });
+                    await updateDoc(userRef, { points: increment(5) });
+                    if(articleData.authorUid) {
+                        const authorRef = doc(db, "users", articleData.authorUid);
+                        await updateDoc(authorRef, { points: increment(10) }).catch(()=>null);
+                    }
+                    alert("🎉 +5 نقاط! +10 للكاتب!");
+                }
+            } catch (error) {
+                alert("خطأ في التفاعل!");
+            }
+        }, 500);
+
+                if(alreadyLiked) {
+                    // إلغاء الإعجاب وسحب نقاط الدعم
+                    await updateDoc(articleRef, { likedBy: arrayRemove(currentUser.uid) });
+                    await updateDoc(userRef, { points: increment(-5) });
+                    
+                    // خصم نقاط من الكاتب الناشر لتراجعه عن التفاعل
+                    if(articleData.authorUid) {
+                        const authorRef = doc(db, "users", articleData.authorUid);
+                        await updateDoc(authorRef, { points: increment(-10) }).catch(e=>null);
+                    }
+                } else {
+                    // إضافة الإعجاب، وإزالة الديسلايك إن وجد تلقائياً
+                    await updateDoc(articleRef, { 
+                        likedBy: arrayUnion(currentUser.uid),
+                        dislikedBy: arrayRemove(currentUser.uid)
+                    });
+                    
+                    // منح الطالب المتفاعل 5 نقاط تشجيعية فورية
+                    await updateDoc(userRef, { points: increment(5) });
+                    
+                    // منح كاتب المقال الناشر 10 نقاط سحابية مكافأة على تفاعل الآخرين البناء بمجتمعه
+                    if(articleData.authorUid) {
+                        const authorRef = doc(db, "users", articleData.authorUid);
+                        await updateDoc(authorRef, { points: increment(10) }).catch(e=>null);
+                    }
+                    alert("🎉 تم تسجيل إعجابك! حصلت على +5 نقاط لدعم المحتوى الهادف، وحصل ناشر المقال على +10 نقاط مكافأة لتفاعلك معه!");
+                }
+            } catch (error) {
+                console.error("Like interaction transaction failure:", error);
+            }
+        };
+
+        // 3. نظام التفاعل بالديسلايك — مع Debounce
+        window.toggleDislikeArticle = debounce(async function(articleId, alreadyDisliked) {
+            if(!currentUser) { alert("يرجى تسجيل الدخول أولاً!"); return; }
+            const userId = currentUser.email || currentUser.uid;
+            try {
+                const articleRef = doc(db, "articles", articleId);
+                if(alreadyDisliked) {
+                    await updateDoc(articleRef, { dislikedBy: arrayRemove(userId) });
+                } else {
+                    await updateDoc(articleRef, { dislikedBy: arrayUnion(userId), likedBy: arrayRemove(userId) });
+                }
+            } catch (error) {
+                alert("خطأ في التفاعل!");
+            }
+        }, 500);
+
+        // --- نظام درج التعليقات المباشرة الفرعي (Subcollection System) ---
+        window.toggleCommentsDrawer = function(articleId) {
+            const drawer = document.getElementById(`commentsDrawer-${articleId}`);
+            drawer.classList.toggle('open');
+            
+            if(drawer.classList.contains('open')) {
+                // استدعاء التعليقات حياً وتتبعها بشكل مستقل ومزامن
+                listenToArticleComments(articleId);
+            }
+        };
+
+        function listenToArticleComments(articleId) {
+            const commentsContainer = document.getElementById(`commentsList-${articleId}`);
+            
+            // إلغاء الـ Listener السابق إن وجد (منع Memory Leak)
+            if (commentListeners.has(articleId)) {
+                commentListeners.get(articleId)();
+                commentListeners.delete(articleId);
+            }
+            
+            const commentsQuery = collection(db, "articles", articleId, "comments");
+            
+            const unsubscribe = onSnapshot(commentsQuery, (snapshot) => {
+                commentsContainer.innerHTML = "";
+                const cList = [];
+                snapshot.forEach(doc => cList.push(doc.data()));
+                
+                // الترتيب من الأقدم للأحدث تصاعدياً لراحة التتبع أثناء القراءة
+                cList.sort((a,b) => (a.timestamp?.seconds || 0) - (b.timestamp?.seconds || 0));
+
+                if(cList.length === 0) {
+                    commentsContainer.innerHTML = `<p style="font-size:12px; color:var(--color-text-muted); text-align:center; padding:10px 0;">لا توجد تعليقات حتى الآن، شارك برأيك لتكون الأول!</p>`;
+                    return;
+                }
+
+                cList.forEach(c => {
+                    const node = document.createElement('div');
+                    node.className = "comment-node";
+                    
+                    let avatar = c.authorAvatar || "1.webp";
+                    if(!avatar.includes('.')) avatar += ".webp";
+
+                    node.innerHTML = `
+                        <img src="${avatar}" class="comment-avatar" alt="Avatar">
+                        <div class="comment-body">
+                            <div class="comment-meta">
+                                <span class="comment-user-name">${c.authorName || 'طالب من المنصة'}</span>
+                            </div>
+                            <p class="comment-text">${c.text}</p>
+                        </div>
+                    `;
+                    commentsContainer.appendChild(node);
+                });
+                // النزول التلقائي لأسفل الصندوق لمشاهدة آخر التعليقات المضافة فوراً
+                commentsContainer.scrollTop = commentsContainer.scrollHeight;
+            }, err => console.log("Live Sync Comments error:", err));
+            
+            // تخزين الـ unsubscribe function
+            commentListeners.set(articleId, unsubscribe);
+        }
+
+        // 6. Debounce Helper
+        function debounce(func, wait) {
+            let timeout;
+            return function (...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), wait);
+            };
+        }
+
+        window.postNewComment = debounce(async function(articleId) {
+            if(!currentUser) { alert("يجب تسجيل الدخول أولاً!"); return; }
+            const inputField = document.getElementById(`commentInput-${articleId}`);
+            const commentText = inputField.value.trim();
+            if(!commentText) return;
+            try {
+                let name = "طالب اتق الله";
+                let avatar = "1.webp";
+                if(userDataCache) {
+                    name = userDataCache.fullName || "طالب";
+                    avatar = userDataCache.avatarId || "1.webp";
+                }
+                const userId = currentUser.email || currentUser.uid;
+                await addDoc(collection(db, "articles", articleId, "comments"), {
+                    text: commentText,
+                    authorUid: userId,
+                    authorName: name,
+                    authorAvatar: avatar,
+                    timestamp: serverTimestamp()
+                });
+                inputField.value = "";
+            } catch (error) {
+                alert("حدث خطأ أثناء إرسال التعليق، حاول مجدداً!");
+                // console.error("Comment error:", error);
+            }
+        }, 1000);
+
+        // --- لوجيك لوحة التصفية الكلاسيكية والفرز حسب فئات المقالات ---
+        window.filterNews = function(tag, event) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.news-card');
+            cards.forEach(card => {
+                if (tag === 'all' || card.getAttribute('data-tag') === tag) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        };
+    </script>
+
+    <script src="components.js"></script>
+</body>
+</html>
